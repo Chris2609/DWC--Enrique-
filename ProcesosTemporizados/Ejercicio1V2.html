@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <img src="numeros/n0.gif" id="numeros" />
+
+    <script>
+      i = 0;
+      setInterval(() => {
+        if (i == 10) {
+          i = 0;
+        }
+        numeros.src = `numeros/n${i}.gif`;
+        i++;
+      }, 500);
+    </script>
+  </body>
+</html>

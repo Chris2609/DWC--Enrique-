@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input id="numeros" type="number" />
+    <button onclick="mostrarNums()">Mostrar número</button>
+    <button onclick="contador()">Contador</button>
+    <div id="contenedor"></div>
+
+    <script>
+      const contenedor = document.getElementById("contenedor");
+
+      function mostrarNums() {
+        numeros = document.getElementById("numeros").value;
+
+        for (i = 0; i < numeros.length; i++) {
+          const imagen = new Image();
+
+          imagen.src = `numeros/n${numeros[i]}.gif`;
+          imagen.id = `img${i}`;
+          contenedor.appendChild(imagen);
+        }
+      }
+
+      function contadorNumeros(numeros) {
+btnStart.disabled = true;
+    	intervalo = setInterval(() => {
+      	htmImages = "";
+      	if (numeros >= 0) {
+        	numerostring = numeros.toString();
+        	numeros--;
+        	for (numero of numerostring) {
+          	htmImages += `<img src="./magenes/n${numero}.gif" alt='${numero}'>`;
+        	}
+        	contenedor.innerHTML = htmImages;
+      	} else {
+        	alert("Contador Finalizado!");
+        	clearInterval(intervalo);
+      	}
+    	}, 1000);
+  	}
+	</script>
+
+
+    </script>
+  </body>
+</html>

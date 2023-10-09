@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function interseccionDeArrays(array1, array2) {
+        //Irene, marius, Christian V1
+        array1.sort();
+        array2.sort();
+        arrayResultado = [];
+
+        if (array1.length > array2.length) {
+          for (let i = 0; i < array1.length; i++) {
+            if (
+              array2.includes(array1[i]) &&
+              !arrayResultado.includes(array1[i])
+            ) {
+              arrayResultado.push(array1[i]);
+            }
+          }
+        } else {
+          for (let i = 0; i < array2.length; i++) {
+            if (
+              array1.includes(array2[i]) &&
+              !arrayResultado.includes(array2[i])
+            ) {
+              arrayResultado.push(array2[i]);
+            }
+          }
+        }
+
+        return arrayResultado;
+      }
+    </script>
+  </body>
+</html>

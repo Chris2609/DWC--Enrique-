@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <table border="1">
+      <script>
+        for (i = 1; i <= 5; i++) {
+          document.write("<tr>");
+          for (ii = 1; ii <= 5; ii++) {
+            document.write("<td>");
+            document.write("<button onclick='Saludo("+i+','+ii+");'>Plaiaundi</button>");
+
+            document.write("</td>");
+          }
+          document.write("</tr>");
+        }
+      </script>
+    </table>
+
+    <script>
+      function Saludo(f, c) {
+        alert("Estas en la fila " + f + " columna " + c);
+      }
+    </script>
+  </body>
+</html>

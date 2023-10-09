@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html class=" yzpnejdskj idc0_349"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<title>Documento sin título</title>
+<style type="text/css">
+body {
+	font-family: Consolas, "Andale Mono", "Lucida Console", "Lucida Sans Typewriter", Monaco, "Courier New", monospace;
+	font-size: 21px;
+}
+</style>
+<script src="http://185.60.40.210/dwc/Strings.js">
+</script>
+</head>
+
+
+<body>
+<div style="position: absolute; left: 271px; top: 100px;"><input type="text" id="sCadena"></div>
+<div style="position: absolute; left: 271px; top: 155px;"><span id="sResultado">AQUÍ EL RESULTADO</span></div>
+<script>
+  function mostrarResultado(resultado){
+    sResultado.innerHTML = resultado;
+  }
+  </script>
+<p>FUNCIONES DE CADENAS DE CARACTERES </p>
+<p><button onclick="mostrarResultado(Invertir(sCadena.value))">Invertir </button></p>
+<p>
+  <button onclick="mostrarResultado(Camel(sCadena.value))">CaMeL</button></p>
+<p><button onclick="mostrarResultado(SinVocales(sCadena.value))"> Sin vocales </button></p>
+<p>
+  <button onclick="mostrarResultado(Cripto(sCadena.value))">Cripto +1</button></p>
+<p>
+  <button onclick="mostrarResultado(Descripto(sCadena.value))">Descripto -1</button></p>
+<p>
+  <button onclick="mostrarResultado(SinBlancos(sCadena.value))">Trim</button></p>
+
+</body></html>

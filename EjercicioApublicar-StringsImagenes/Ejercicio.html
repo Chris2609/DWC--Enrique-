@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input type="text" id="texto" />
+    <button onclick="Escribir()" id="escribir">Escribir</button>
+    <button onclick="Borrar()" id="borrar">Borrar</button>
+
+    <div id="contenedor"></div>
+
+    <script>
+      const contenedor = document.getElementById("contenedor");
+
+      const letras = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+      for (letra of letras) {
+        const imagen = new Image();
+
+        imagen.src = `Letras/${letra}.gif`;
+      }
+      const imagen = new Image();
+      imagen.src = `Letras/Blanco.gif`;
+
+      function Escribir() {
+        nombre = document.getElementById("texto").value.toUpperCase();
+
+        i = 0;
+        var id = setInterval(() => {
+          document.getElementById("escribir").disabled = true;
+          document.getElementById("borrar").disabled = true;
+          if (/[A-Z]/.test(nombre.split("")[i])) {
+            const imagen = new Image();
+            imagen.src = `Letras/${nombre.split("")[i]}.gif`;
+            imagen.id = `img${nombre.split("")[i]}`;
+            contenedor.appendChild(imagen);
+            i++;
+          } else{
+            const imagen = new Image();
+            imagen.src = `Letras/Blanco.gif`;
+            imagen.id = `imgBlanco`;
+            contenedor.appendChild(imagen);
+            i++;
+          }
+
+          if (i == nombre.length) {
+            clearInterval(id);
+            document.getElementById("escribir").disabled = false;
+            document.getElementById("borrar").disabled = false;
+          }
+        }, 500);
+      }
+
+      function Borrar() {
+        contenedor.innerHTML = "";
+      }
+    </script>
+  </body>
+</html>

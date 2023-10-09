@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="contenedor"></div>
+
+    <script>
+      const contenedor = document.getElementById("contenedor");
+      const nombre = "ITZIAR treinta y tres";
+
+      for (let i = 0; i < nombre.length; i++) {
+        const imagen = new Image();
+
+        if (nombre[i] == " ") {
+          imagen.src = "Letras/Vacio.gif";
+          imagen.id = `img${i}`;
+        } else {
+          imagen.src = `Letras/${nombre[i]}.gif`;
+          imagen.id = `img${i}`;
+          imagen.onclick = function () {
+            this.src = "Letras/Blanco.gif";
+          };
+          imagen.ondblclick = function () {
+            this.src = `Letras/${nombre[i]}.gif`;
+          };
+        }
+
+        contenedor.appendChild(imagen);
+      }
+    </script>
+  </body>
+</html>

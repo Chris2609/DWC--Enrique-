@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /* V.1 Irene, Christian, Nagore*/
+      function DifDias(fecha1, fecha2) {
+        fecha1 = new Date(fecha1);
+        fecha2 = new Date(fecha2);
+
+        let resultado = Math.floor(
+          (fecha1.getTime() - fecha2.getTime()) / 1000 / 60 / 60 / 24
+        );
+
+        return resultado;
+      }
+    </script>
+
+    <script src="http://185.60.40.210/dwc/Fechas.js"></script>
+  </body>
+</html>

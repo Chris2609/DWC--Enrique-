@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Lista de trajes</title>
+<link href="examen.css" rel="stylesheet" type="text/css">
+
+<script src="jQueryAssets/jquery-1.11.1.min.js"></script>
+<script src="jQueryAssets/jquery-ui-effects.custom.min.js"></script>
+<script type="text/javascript">
+function MM_DW_effectBounce(obj,method,effect,direction,distance,mode,times,speed)
+{
+    obj[method](effect, { direction:direction,distance:distance,mode:mode,times:times}, speed);
+}
+function MM_popupMsg(msg) { //v1.0
+  alert(msg);
+}
+</script>
+</head>
+
+<body>
+<h1 class="juncal">TRAJES</h1>
+<table style="position: absolute; left: 628px; top: 248px;" width="200" border="0" align="center">
+  <tbody>
+    <tr>
+      <td><img src="BAJA/trajeBAJA1.jpg" alt="" width="98" height="160" id="traje1"/></td>
+      <td><img src="BAJA/trajeBAJA2.jpg" alt="" width="97" height="160" id="traje2"/></td>
+      <td><img src="BAJA/trajeBAJA3.jpg" alt="" width="97" height="160" id="traje3"/></td>
+      <td><img src="BAJA/trajeBAJA4.jpg" alt="" width="97" height="160" id="traje4"/></td>
+    </tr>
+  </tbody>
+</table>
+<input name="button" type="button" id="button" style="position: absolute; left: 725px; top: 128px; width: 199px; height: 89px;" onClick="MM_DW_effectBounce($('#traje1'),'effect','bounce','left',50,'hide',2,3000);MM_DW_effectBounce($('#traje2'),'effect','bounce','up',50,'hide',2,3000);MM_DW_effectBounce($('#traje3'),'effect','bounce','down',50,'hide',2,3000);MM_DW_effectBounce($('#traje4'),'effect','bounce','right',50,'hide',2,3000);MM_popupMsg('https://www.youtube.com/watch?v=dQw4w9WgXcQ&amp;pp=ygUXbmV2ZXIgZ29ubmEgZ2l2ZSB5b3UgdXA%3D')" value="Pulsar">
+</body>
+</html>

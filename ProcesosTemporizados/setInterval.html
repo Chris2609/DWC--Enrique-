@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <p id="parrafo">0</p>
+
+    <script>
+      i = 0;
+
+      function incrementarNum() {
+        i++;
+        parrafo.innerHTML = i;
+        if (i == 20) {
+          clearInterval(miIntervalo);
+        }
+      }
+
+      var miIntervalo = setInterval(incrementarNum, 500);
+    </script>
+  </body>
+</html>

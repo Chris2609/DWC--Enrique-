@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let numeroImagen = 0;
+      function cambiarImg() {
+        numeroImagen++;
+        if (numeroImagen == 10) {
+          numeroImagen = 0;
+        }
+        document.images["img"].src = `Imagenes/n${numeroImagen}.gif`;
+      }
+      let imagen = 0;
+      function operacion(tipo) {
+        if (tipo == "suma") {
+          imagen++;
+          if (imagen == 10) {
+            imagen = 0;
+          }
+          document.images["img"].src = `Imagenes/n${imagen}.gif`;
+        } else if (tipo == "resta") {
+          imagen--;
+          if (imagen == -1) {
+            imagen = 9;
+          }
+          document.images["img"].src = `Imagenes/n${imagen}.gif`;
+        }
+      }
+    </script>
+    <img src="Imagenes/n0.gif" alt="Imagen" id="img" onclick="cambiarImg()" />
+    <button onclick="operacion('suma')">Sumar</button>
+    <button onclick="operacion('resta')">Restar</button>
+  </body>
+</html>

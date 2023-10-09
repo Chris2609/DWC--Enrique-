@@ -1,0 +1,69 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Lista de barcos</title>
+<link href="examen.css" rel="stylesheet" type="text/css">
+<script type="text/javascript">
+function MM_preloadImages() { //v3.0
+  var d=document; if(d.images){ if(!d.MM_p) d.MM_p=new Array();
+    var i,j=d.MM_p.length,a=MM_preloadImages.arguments; for(i=0; i<a.length; i++)
+    if (a[i].indexOf("#")!=0){ d.MM_p[j]=new Image; d.MM_p[j++].src=a[i];}}
+}
+
+function MM_swapImgRestore() { //v3.0
+  var i,x,a=document.MM_sr; for(i=0;a&&i<a.length&&(x=a[i])&&x.oSrc;i++) x.src=x.oSrc;
+}
+
+function MM_findObj(n, d) { //v4.01
+  var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+    d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+  if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+  for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
+  if(!x && d.getElementById) x=d.getElementById(n); return x;
+}
+
+function MM_swapImage() { //v3.0
+  var i,j=0,x,a=MM_swapImage.arguments; document.MM_sr=new Array; for(i=0;i<(a.length-2);i+=3)
+   if ((x=MM_findObj(a[i]))!=null){document.MM_sr[j++]=x; if(!x.oSrc) x.oSrc=x.src; x.src=a[i+2];}
+}
+</script>
+</head>
+
+
+	
+<body onLoad="MM_preloadImages('ALTA/barcoALTA1.jpg','transparente.png','ALTA/barcoALTA2.jpg','ALTA/barcoALTA4.jpg','ALTA/barcoALTA3.jpg')">
+<h1 align="center"class="juncal">BARCOS</h1>
+
+<table width="200" border="1" align="center">
+  <tbody>
+    <tr>
+      <td><img src="BAJA/barcoBAJA1.jpg" alt="" width="114" height="160" id="barcoR"/></td>
+      <td><img src="BAJA/barcoBAJA2.jpg" alt="" width="112" height="160" id="barcoV"/></td>
+      <td><img src="BAJA/barcoBAJA3.jpg" alt="" width="114" height="160" id="barcoA"/></td>
+      <td><img src="BAJA/barcoBAJA4.jpg" alt="" width="114" height="160" id="barcoM"/></td>
+    </tr>
+    <tr>
+      <td><input name="button" type="button" id="button" onClick="MM_swapImage('transparenteR','','ALTA/barcoALTA1.jpg',1)" value="Ver">
+      <input name="button2" type="button" id="button2" onClick="MM_swapImage('transparenteR','','transparente.png',1)" value="Ocultar"></td>
+      <td><input name="button3" type="button" id="button3" onClick="MM_swapImage('transparenteV','','ALTA/barcoALTA2.jpg',1)" value="Ver">
+      <input name="button4" type="button" id="button4" onClick="MM_swapImage('transparenteV','','transparente.png',1)" value="Ocultar"></td>
+      <td><input name="button5" type="button" id="button5" onClick="MM_swapImage('transparenteA','','ALTA/barcoALTA3.jpg',1)" value="Ver">
+      <input name="button6" type="button" id="button6" onClick="MM_swapImage('transparenteA','','transparente.png',1)" value="Ocultar"></td>
+      <td><input name="button7" type="button" id="button7" onClick="MM_swapImage('transparenteM','','ALTA/barcoALTA4.jpg',1)" value="Ver">
+      <input name="button8" type="button" id="button8" onClick="MM_swapImage('transparenteM','','transparente.png',1)" value="Ocultar"></td>
+    </tr>
+  </tbody>
+</table>
+<table width="200" border="0" align="center">
+  <tbody>
+    <tr>
+      <td><img src="transparente.png" alt="" width="227" height="320" id="transparenteR"/></td>
+      <td><img src="transparente.png" alt="" width="227" height="320" id="transparenteV"/></td>
+      <td><img src="transparente.png" alt="" width="227" height="320" id="transparenteA"/></td>
+      <td><img src="transparente.png" alt="" width="227" height="320" id="transparenteM"/></td>
+    </tr>
+  </tbody>
+</table>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="contenedor"></div>
+
+    <script>
+      const contenedor = document.getElementById("contenedor");
+      let htmlImagenes = "";
+      const nombre = "ITZIAR treinta y tres";
+
+      for (let i = 0; i < nombre.length; i++) {
+
+        if(nombre[i] == ' '){
+            htmlImagenes += `<img src="Letras/Vacio.gif" id="Imn${i}">`;
+        }else{
+            htmlImagenes += `<img src="Letras/${nombre[i]}.gif" id="Imn${i}">`;
+        }
+
+      }
+      
+      contenedor.innerHTML = htmlImagenes;
+
+    </script>
+  </body>
+</html>

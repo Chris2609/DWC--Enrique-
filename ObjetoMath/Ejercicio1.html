@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="contenedor"></div>
+
+    <script>
+      /*numeros = [];
+      for (i = 0; i < 6; i++) {
+        numRandom = Math.floor(Math.random() * 49) + 1;
+        
+        if(!numeros.includes(numRandom)){
+            numeros.push(numRandom);
+            contenedor.innerHTML += `<h2>${numeros[i]}</h2>`;
+        }else{
+            i--;
+        }
+      }*/
+
+      /*Con set*/
+      numeros = new Set();
+      while (numeros.size < 6) {
+        numeros.add(Math.floor(Math.random() * 49) + 1);
+      }
+
+      for (numero of numeros) {
+        contenedor.innerHTML += `<h2>${numero}</h2>`;
+      }
+    </script>
+  </body>
+</html>

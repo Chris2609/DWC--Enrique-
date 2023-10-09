@@ -1,0 +1,16 @@
+@charset "utf-8";
+
+.juncal{
+	color: red;
+	font-family: "Courier new";
+	font-weight: bold;
+	font-size: 24px;
+}
+
+body{
+	background-color: #66CCFF;
+}
+
+td{
+	text-align: center;
+}

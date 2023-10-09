@@ -1,0 +1,31 @@
+@charset "utf-8";
+/* Estilo para hipervínculos */
+a {
+  color: green; /* Color verde por defecto */
+  text-decoration: none; /* Sin subrayado por defecto */
+}
+
+a:hover {
+  color: red; /* Color rojo al pasar el puntero */
+  text-decoration: underline; /* Subrayado al pasar el puntero */
+}
+
+/* Fondo de todas las páginas */
+body {
+  background-color: #FFCC66; /* Color de fondo amarillo */
+}
+
+/* Estilo para h2 */
+h2 {
+  font-family: Verdana, sans-serif; /* Tipo de letra Verdana */
+  color: #6666FF; /* Color azul */
+}
+
+/* Estilo para párrafo normal */
+p {
+  font-family: 'Comic Sans MS', cursive, sans-serif; /* Tipo de letra Comic Sans */
+}
+
+.christian{
+	color: white
+}

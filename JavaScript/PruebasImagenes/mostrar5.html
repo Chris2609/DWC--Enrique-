@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="contenedor"></div>
+
+    <script>
+      const contenedor = document.getElementById("contenedor");
+      let htmlImagenes = '';
+      const n = 10;
+      numeros = [];
+
+      for (let i = 0; i < n ; i++) {
+        htmlImagenes += `<img src="Imagenes/n0.gif" id="Imn${i}" onclick = "Cambiar(${i});">`;
+        numeros.push(0);
+      }
+
+      function Cambiar(nImagen){
+        numeros[nImagen]++;
+        if(numeros[nImagen] == 10){
+            numeros[nImagen] = 0;
+        }
+        document.images["Imn" + nImagen].src = `Imagenes/n${numeros[nImagen]}.gif`;
+      }
+      contenedor.innerHTML = htmlImagenes;
+    </script>
+  </body>
+</html>
