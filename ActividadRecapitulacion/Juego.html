@@ -5,40 +5,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
   </head>
-<style>
-    table{
-        border: 1px solid black;
+  <style>
+    table {
+      border: 1px solid black;
     }
 
-    td{
-        border: 1px solid black;
-        border-collapse: separate;
+    td {
+      border: 1px solid black;
     }
-</style>
+  </style>
 
   <body>
     <!-- <div id="contenedor"></div> -->
 
     <script src="http://185.60.40.210/dwc/Juegos.js"></script>
     <script>
-      const contenedor = document.getElementById("contenedor"); 
+      function Cambiar(fila, columna) {
+        alert(fila + "," + columna);
+      }
+
+
+      const contenedor = document.getElementById("contenedor");
       let htmlTabla = "";
       const n = 3;
       const aTabla = Aleatorio(n);
 
       htmlTabla += `<table>`;
-        
 
+      fila = 0;
       for (arrayInterior of aTabla) {
         htmlTabla += `<tr>`;
+        columna = 0;
+
         for (value of arrayInterior) {
-        //   img = new Image();
-        //   img.src = `Numeros/n${value}.gif`;
-          htmlTabla += `<td> <img src= "Numeros/n${value}.gif" id="imBola${value}"> </td>`;
+          //   img = new Image();
+          //   img.src = `Numeros/n${value}.gif`;
+
+          htmlTabla += `<td> <img src= "Numeros/n${value}.gif" id="imBola${fila}${columna}" onclick="Cambiar(${fila}, ${columna})"> </td>`;
+          columna++;
         }
         htmlTabla += `</tr>`;
+        fila++;
       }
-    
       htmlTabla += `</table>`;
 
       document.write(htmlTabla);
