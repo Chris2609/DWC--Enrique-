@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+<style>
+    table{
+        border: 1px solid black;
+    }
+
+    td{
+        border: 1px solid black;
+        border-collapse: separate;
+    }
+</style>
+
+  <body>
+    <!-- <div id="contenedor"></div> -->
+
+    <script src="http://185.60.40.210/dwc/Juegos.js"></script>
+    <script>
+      const contenedor = document.getElementById("contenedor"); 
+      let htmlTabla = "";
+      const n = 3;
+      const aTabla = Aleatorio(n);
+
+      htmlTabla += `<table>`;
+        
+
+      for (arrayInterior of aTabla) {
+        htmlTabla += `<tr>`;
+        for (value of arrayInterior) {
+        //   img = new Image();
+        //   img.src = `Numeros/n${value}.gif`;
+          htmlTabla += `<td> <img src= "Numeros/n${value}.gif" id="Imgn${value}"> </td>`;
+        }
+        htmlTabla += `</tr>`;
+      }
+    
+      htmlTabla += `</table>`;
+
+      document.write(htmlTabla);
+    </script>
+  </body>
+</html>
