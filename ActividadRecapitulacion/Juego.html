@@ -20,15 +20,27 @@
 
     <script src="http://185.60.40.210/dwc/Juegos.js"></script>
     <script>
-      function Cambiar(fila, columna) {
-        alert(fila + "," + columna);
-      }
-
-
-      const contenedor = document.getElementById("contenedor");
+    //   const contenedor = document.getElementById("contenedor");
       let htmlTabla = "";
       const n = 3;
       const aTabla = Aleatorio(n);
+      f0 = n - 1;
+      c0 = n - 1;
+
+      function Cambiar(fila, columna) {
+        
+        if (
+          (columna == c0 && (fila + 1 == f0 || fila - 1 == f0)) ||
+          (fila == f0 && (columna + 1 == c0 || columna - 1 == c0))
+        ) {
+            imagen1 = document.getElementById(`imBola${fila}${columna}`);
+            imagen2 = document.getElementById(`imBola${f0}${c0}`);
+
+            [imagen1.src, imagen2.src] = [imagen2.src, imagen1.src];
+            f0 = fila;
+            c0 = columna;
+        } 
+      }
 
       htmlTabla += `<table>`;
 
