@@ -17,61 +17,93 @@
 
   <body>
     <!-- <div id="contenedor"></div> -->
+    <div id="contenedorContador"></div>
+    <div id="contenedorCuentaAtras"></div>
 
     <script src="http://185.60.40.210/dwc/Juegos.js"></script>
     <script>
       //   const contenedor = document.getElementById("contenedor");
-        let htmlTabla = "";
-        const n = 2;
-        finalizado = false;
-        const aTabla = Aleatorio(n);
-        contadorClic = 0;
-        f0 = n - 1;
-        c0 = n - 1;
+      const contenedorContador = document.getElementById("contenedorContador");
+      const contenedorCuentaAtras = document.getElementById(
+        "contenedorCuentaAtras"
+      );
 
-        function Cambiar(fila, columna) {
-          if(finalizado == false){
+      let htmlTabla = "";
+      const n = 7;
+      finalizado = false;
+      const aTabla = Aleatorio(n);
+      contadorClic = 0;
+      tiempo = n * n * 10;
+      f0 = n - 1;
+      c0 = n - 1;
+      
+      contenedorCuentaAtras.innerHTML = `<h2>Tiempo restante: ${tiempo}</h2>`;
+
+      nabo = setInterval(() => {
+        tiempo--;
+        contenedorCuentaAtras.innerHTML = `<h2>Tiempo restante: ${tiempo}</h2>`;
+        if (tiempo <= 0) {
+        setTimeout(() => alert("Derrota, ¡Se ha acabado el tiempo!"), 25);
+        finalizado = true;
+        clearInterval(nabo);
+      }
+      }, 1000);
+      
+
+      function Cambiar(fila, columna) {
+        if (finalizado == false) {
           if (
             (columna == c0 && (fila + 1 == f0 || fila - 1 == f0)) ||
             (fila == f0 && (columna + 1 == c0 || columna - 1 == c0))
           ) {
-              imagen1 = document.getElementById(`imBola${fila}${columna}`);
-              imagen2 = document.getElementById(`imBola${f0}${c0}`);
+            imagen1 = document.getElementById(`imBola${fila}${columna}`);
+            imagen2 = document.getElementById(`imBola${f0}${c0}`);
 
-              [imagen1.src, imagen2.src] = [imagen2.src, imagen1.src];
-              [aTabla[f0][c0], aTabla[fila][columna]] = [aTabla[fila][columna], aTabla[f0][c0]];
-              // console.log(aTabla);
-              f0 = fila;
-              c0 = columna;
+            [imagen1.src, imagen2.src] = [imagen2.src, imagen1.src];
+            [aTabla[f0][c0], aTabla[fila][columna]] = [
+              aTabla[fila][columna],
+              aTabla[f0][c0],
+            ];
+            // console.log(aTabla);
+            f0 = fila;
+            c0 = columna;
+            contadorClic++;
+            contenedorContador.innerHTML = `<h2>Contador de clics: ${contadorClic}</h2>`;
           }
-          //IMPORTANTE Array.form y .flat
-          if(Array.from({length:n*n-1}, (x,i)=>i+1).join(",")+",0" == aTabla.flat()){
-                setTimeout(() => alert("Victoria"), 25);
-                finalizado = true;
-              }
-            }
-        }
 
-        htmlTabla += `<table>`;
-
-        fila = 0;
-        for (arrayInterior of aTabla) {
-          htmlTabla += `<tr>`;
-          columna = 0;
-
-          for (value of arrayInterior) {
-            //   img = new Image();
-            //   img.src = `Numeros/n${value}.gif`;
-
-            htmlTabla += `<td> <img src= "Numeros/n${value}.gif" id="imBola${fila}${columna}" onclick="Cambiar(${fila}, ${columna})"> </td>`;
-            columna++;
+          //IMPORTANTE Array.from y .flat
+          if (
+            Array.from({ length: n * n - 1 }, (x, i) => i + 1).join(",") +
+              ",0" ==
+            aTabla.flat()
+          ) {
+            setTimeout(() => alert("Victoria"), 25);
+            finalizado = true;
           }
-          htmlTabla += `</tr>`;
-          fila++;
         }
-        htmlTabla += `</table>`;
+      }
 
-        document.write(htmlTabla);
+      htmlTabla += `<table>`;
+
+      fila = 0;
+      for (arrayInterior of aTabla) {
+        htmlTabla += `<tr>`;
+        columna = 0;
+
+        for (value of arrayInterior) {
+          //   img = new Image();
+          //   img.src = `Numeros/n${value}.gif`;
+
+          htmlTabla += `<td> <img src= "Numeros/n${value}.gif" id="imBola${fila}${columna}" onclick="Cambiar(${fila}, ${columna})"> </td>`;
+          columna++;
+        }
+        htmlTabla += `</tr>`;
+        fila++;
+      }
+      htmlTabla += `</table>`;
+      contenedorContador.innerHTML = `<h2>Contador de clics: ${contadorClic}</h2>`;
+
+      document.write(htmlTabla);
     </script>
   </body>
 </html>
