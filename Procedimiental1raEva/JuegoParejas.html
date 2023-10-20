@@ -1,15 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<body>
-    <script>
-        let htmlCartas = "";
+  </head>
+  <style>
+    table {
+      border: 1px solid black;
+      border-collapse: collapse;
+    }
+    img{
+        padding: 10px;
+        width: 50px;
+    }
 
-        
+    td {
+      border: 1px solid black;
+    }
+  </style>
+  <body>
+    <div id="contenedor"></div>
+
+    <script src="http://185.60.40.210/dwc/Juegos.js"></script>
+
+    <script>
+
+        function Revelar(idCarta, fila, columna){
+            carta = document.getElementById(`${idCarta}f${fila}c${columna}`);
+            carta.src = `Baraja/${idCarta}.png`;
+
+            aCartas.flat;
+            
+        }
+
+      const contendor = document.getElementById("contenedor");
+      let htmlCartas = "";
+      arrayBooleans = []
+
+      const aCartas = CrearTablaCartas(4, 10);
+
+      htmlCartas += `<table>`;
+
+      fila = 0;
+
+      for (arrayInterior of aCartas) {
+        htmlCartas += `<tr>`;
+            columna = 0;
+
+        for(carta of arrayInterior){
+            arrayBooleans.push(false);
+            htmlCartas += `<td> <img src="Baraja/0.png" id="${carta}f${fila}c${columna}" onClick="Revelar(${carta}, ${fila}, ${columna})"> </td>`
+            columna++;
+        }
+
+        htmlCartas += `</tr>`;
+        fila++;
+      }
+
+      htmlCartas += `</table>`;
+
+      contenedor.innerHTML = htmlCartas;
     </script>
-</body>
+  </body>
 </html>
