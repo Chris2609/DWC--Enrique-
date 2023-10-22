@@ -20,11 +20,15 @@
       }
 
       function Cambiar(nImagen){
+        imagen = document.getElementById(`Imn${nImagen}`);
+
         numeros[nImagen]++;
         if(numeros[nImagen] == 10){
             numeros[nImagen] = 0;
         }
-        document.images["Imn" + nImagen].src = `Imagenes/n${numeros[nImagen]}.gif`;
+
+        imagen.src = `Imagenes/n${numeros[nImagen]}.gif`;
+        // document.images["Imn" + nImagen].src = `Imagenes/n${numeros[nImagen]}.gif`;
       }
       contenedor.innerHTML = htmlImagenes;
     </script>

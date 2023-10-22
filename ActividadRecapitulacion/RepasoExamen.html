@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="contenedor"></div>
+
+    <script>
+        const contenedor = document.getElementById("contenedor");
+        let html = "";
+        numeroImg = 0;
+
+        html += `<img src="Numeros/n0.gif" id="imagen" onClick="Sumar(${numeroImg})">`
+        html += `<br><button onClick="btnSumar">Sumar</button>`;
+        function Sumar(imagen){
+            img = document.getElementById("imagen");
+            numeroImg++;
+            if(numeroImg > 9){
+                numeroImg = 0;
+            }
+            img.src = `Numeros/n${numeroImg}.gif`;
+
+        }
+        function btnSumar(){
+            
+        }
+        contenedor.innerHTML = html;
+    </script>
+</body>
+</html>
