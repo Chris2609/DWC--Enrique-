@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="contenedor"></div>
+    <script>
+
+
+      const contenedor = document.getElementById("contenedor");
+      let htmlImagenes = "";
+      const n = 3;
+      numeros = [];
+      nImagen = 0;
+      htmlImagenes += `<table>`;
+
+      for (let fila = 1; fila <= n; fila++) {
+        htmlImagenes += `<tr>`;
+
+        for (let i = 0; i < n; i++) {
+          htmlImagenes += `<td> <img src="Imagenes/n9.gif" id="Imn${nImagen}" onclick = "Cambiar(${nImagen});"> </td>`;
+          nImagen++;
+          numeros.push(9);
+
+        }
+        numeros.push(9);
+
+        htmlImagenes += `</tr>`;
+      }
+      htmlImagenes += `</table>`;
+
+      function Cambiar(nImagen) {
+        imagen = document.getElementById(`Imn${nImagen}`);
+
+        numeros[nImagen]--;
+        if (numeros[nImagen] < 0) {
+          imagen = document.getElementById(`Imn${nImagen}`).disabled = true;
+        }
+
+        imagen.src = `Imagenes/n${numeros[nImagen]}.gif`;
+      }
+      contenedor.innerHTML = htmlImagenes;
+    </script>
+  </body>
+</html>
