@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p id="contenedor"></p>
+    <button onclick="Sumar()">Sumar</button>
+    <button onclick="Reset()">Reset</button>
+    <script>
+        contenedor = document.getElementById("contenedor");
+        document.getElementById("contenedor").style.color = "red";
+        numero = 5;
+        color = 1;
+
+        function Sumar(){
+            if(color % 2 == 0){
+                document.getElementById("contenedor").style.color = "red";
+            } else{
+                document.getElementById("contenedor").style.color = "green";
+            }
+            color++;
+            numero += 5;
+            contenedor.innerHTML = numero;
+        }
+
+        function Reset(){
+            numero = 5;
+            color = 1;
+            contenedor.innerHTML = numero;
+        }
+
+        contenedor.innerHTML = numero;
+    </script>
+</body>
+</html>

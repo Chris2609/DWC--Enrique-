@@ -1,0 +1,20 @@
+
+//Lectura y grabación de cookies
+
+    
+function setCookie(nombre, valor, caducidad) {
+        // Si no se proporciona una fecha de caducidad, la cookie será de sesión
+        // Utilizamos el operador ternario
+        let fechaExpiracion = caducidad ? "; expires=" + caducidad.toGMTString() : "";
+        // Crea la cookie con el nombre, valor y caducidad (si se proporciona)
+        document.cookie = nombre + "=" + valor + fechaExpiracion + "; path=/";
+}
+function obtenerValorCookie(nombre) {
+        let inicio = document.cookie.indexOf(nombre + "=");
+        if (inicio === -1) return null;
+        inicio += nombre.length + 1; // Desplazarse al inicio del valor
+        let fin = document.cookie.indexOf(';', inicio);
+        if (fin === -1) fin = document.cookie.length;
+        return document.cookie.substring(inicio, fin);
+}
+
