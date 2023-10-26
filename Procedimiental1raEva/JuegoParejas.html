@@ -41,6 +41,7 @@
           carta2Id = document.getElementById(`${idCarta}f${fila}c${columna}`);
 
           if (carta1src == carta2src) {
+            //array booleans
           } else {
             setTimeout(() => {
               carta1Id.src = `Baraja/0.png`;
@@ -50,7 +51,7 @@
         }
 
         numeroClicks++;
-        if(numeroClicks == 2){
+        if (numeroClicks == 2) {
           numeroClicks = 0;
         }
       }
