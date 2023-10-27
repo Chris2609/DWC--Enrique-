@@ -33,12 +33,14 @@
           carta1src = document.getElementById(
             `${idCarta}f${fila}c${columna}`
           ).src;
-          carta1Id = document.getElementById(`${idCarta}f${fila}c${columna}`);
+          // carta1Id = document.getElementById(`${idCarta}f${fila}c${columna}`);
+          carta1Id = carta;
         } else if (numeroClicks == 1) {
           carta2src = document.getElementById(
             `${idCarta}f${fila}c${columna}`
           ).src;
-          carta2Id = document.getElementById(`${idCarta}f${fila}c${columna}`);
+          // carta2Id = document.getElementById(`${idCarta}f${fila}c${columna}`);
+          carta2Id = carta;
 
           if (carta1src == carta2src) {
             //array booleans
