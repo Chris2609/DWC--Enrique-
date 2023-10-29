@@ -7,37 +7,44 @@
   </head>
 
   <style>
-    body{
-        background-color: red;
-    }
+
   </style>
   <body>
     <h1>Plaiaundi</h1>
 
-    <form>
-        <input type="radio" name="cookie" id="rojo">Rojo
-        <input type="radio" name="cookie" id="verde">Verde
-        <button type="submit">Enviar</button>
-    </form>
-    
+    <input type="radio" name="cookie" id="rojo" checked />Rojo
+    <input type="radio" name="cookie" id="verde" />Verde
+    <button id="enviar" onclick="enviarEleccion()">Enviar</button>
+
     <script
       language="JavaScript"
       src="http://185.60.40.210/dwc/Cookies.js"
     ></script>
 
-
-
     <script>
+      rojo = document.getElementById("rojo");
+      verde = document.getElementById("verde");
 
-        if(document.getElementById("rojo").ariaChecked == true){
-            setCookie("color", "0");
-            document.body.style.backgroundColor = "red";
-        } else if(document.getElementById("verde").ariaChecked == true){
-            setCookie("color", "1");
-            document.body.style.backgroundColor = "green";
+      function cargarEleccion() {
+        cookie = obtenerValorCookie("color");
+        if(cookie == "rojo" || !cookie){
+          document.body.style.backgroundColor = "red";
+        }else if (cookie == "verde"){
+          document.body.style.backgroundColor = "green";
+        }
+      }
+
+      cargarEleccion();
+
+      function enviarEleccion() {
+        if (rojo.checked) {
+          setCookie("color", "rojo");
+        } else if (verde.checked) {
+          setCookie("color", "verde");
         }
 
-
+        cargarEleccion();
+      }
     </script>
   </body>
 </html>
