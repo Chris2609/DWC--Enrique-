@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    body {
+      background: url("Baraja/tapete.png") no-repeat;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-size: 750px;
+      background-position: 50% 80px;
+
+    }
+
+    #contenedor {
+      position: relative;
+      top: 100px;
+    }
+    img {
+      padding: 10px;
+      width: 50px;
+    }
+  </style>
+  <body>
+    <div id="contenedor"></div>
+
+    <script src="http://185.60.40.210/dwc/Juegos.js"></script>
+
+    <script>
+      const contenedor = document.getElementById("contenedor");
+      let htmlCartas = "";
+      const aCartas = CrearTablaCartas(4, 10);
+      arrayBooleans = [];
+      numeroClicks = 0;
+      carta1 = null;
+      carta2 = null;
+      clickable = true;
+
+      htmlCartas += `<table>`;
+
+      fila = 0;
+
+      for (arrayInterior of aCartas) {
+        htmlCartas += `<tr>`;
+        columna = 0;
+
+        let booleans = [];
+
+        for (carta of arrayInterior) {
+          htmlCartas += `<td> <img src="Baraja/0.png" id="${carta}f${fila}c${columna}" onClick="Revelar(${carta}, ${fila}, ${columna})"> </td>`;
+          columna++;
+
+          booleans.push(false);
+        }
+        arrayBooleans.push(booleans);
+        htmlCartas += `</tr>`;
+        fila++;
+      }
+
+      htmlCartas += `</table cellspacing="0" cellpadding="0">`;
+
+      contenedor.innerHTML = htmlCartas;
+
+      function Revelar(idCarta, fila, columna) {
+        if (arrayBooleans[fila][columna] == false && clickable) {
+          carta = document.getElementById(`${idCarta}f${fila}c${columna}`);
+          carta.src = `Baraja/${idCarta}.png`;
+
+          if (numeroClicks == 0) {
+            carta1 = carta;
+            filaYcolumna1 = [fila, columna];
+            arrayBooleans[fila][columna] = true;
+          } else if (numeroClicks == 1) {
+            clickable = false;
+            // fila columna entran con los datos de la segunda carta
+
+            /* carta2src = document.getElementById(
+            `${idCarta}f${fila}c${columna}`
+          ).src;
+          carta2 = document.getElementById(`${idCarta}f${fila}c${columna}`); */
+            carta2 = carta;
+
+            //comprobacion de la pareja
+
+            setTimeout(() => {
+              if (carta1.src == carta2.src) {
+                //array booleans
+                arrayBooleans[fila][columna] = true;
+              } else {
+                arrayBooleans[filaYcolumna1[0]][filaYcolumna1[1]] = false;
+                carta1.src = `Baraja/0.png`;
+                carta2.src = `Baraja/0.png`;
+              }
+              clickable = true;
+            }, 1000);
+          }
+
+          numeroClicks++;
+          if (numeroClicks == 2) {
+            numeroClicks = 0;
+          }
+        }
+      }
+    </script>
+  </body>
+</html>
