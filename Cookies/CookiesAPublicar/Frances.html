@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script src="http://185.60.40.210/dwc/Cookies.js"></script>
+
+    <script>
+        function cambiarIdioma(valorIdioma){
+            setCookie("idioma", valorIdioma);
+            window.location = "./index.html";
+        }
+    </script>
+
+    <h1>Bonjour</h1>
+    <button onclick="cambiarIdioma('1')">Castellano</button>
+    <button onclick="cambiarIdioma('2')">Euskera</button>
+    <button disabled>Frances</button>
+    <button onclick="cambiarIdioma('4')">Ingles</button>
+
+</body>
+</html>
