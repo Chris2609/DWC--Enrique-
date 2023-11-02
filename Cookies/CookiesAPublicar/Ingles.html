@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script src="http://185.60.40.210/dwc/Cookies.js"></script>
+
+    <script>
+      caducidadCookie = new Date();
+      caducidadCookie.setHours(caducidadCookie.getHours() + 10 * 24);
+
+      function cambiarIdioma(valorIdioma) {
+        setCookie("idioma", valorIdioma, caducidadCookie);
+        window.location = "./index.html";
+      }
+    </script>
+
+    <h1>Good morning</h1>
+    <button onclick="cambiarIdioma('1')">Castellano</button>
+    <button onclick="cambiarIdioma('2')">Euskera</button>
+    <button onclick="cambiarIdioma('3')">Frances</button>
+    <button disabled>Ingles</button>
+  </body>
+</html>

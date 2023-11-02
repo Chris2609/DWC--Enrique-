@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documento de Prueba</title>
+    <style>
+        .destacado { font-weight: bold; }
+        .enlace-externo::after { content: ' (externo)'; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1 id="titulo-principal">Bienvenido al Documento de Prueba</h1>
+        <nav>
+            <ul>
+                <li><a href="#seccion1" class="navegacion">Sección 1</a></li>
+                <li><a href="#seccion2" class="navegacion">Sección 2</a></li>
+                <li><a href="#seccion3" class="navegacion">Sección 3</a></li>
+            </ul>
+        </nav>
+    </header>
+    <section id="seccion1">
+        <h2>Sección 1</h2>
+        <p class="parrafo destacado">Este es un párrafo destacado en la Sección 1.</p>
+        <p>Este es otro párrafo en la Sección 1.</p>
+        <ul>
+            <li class="item-lista">Item 1</li>
+            <li class="item-lista">Item 2</li>
+            <li class="item-lista">Item 3</li>
+        </ul>
+    </section>
+    <section id="seccion2">
+        <h2>Sección 2</h2>
+        <table>
+            <tr>
+                <th>Encabezado 1</th>
+                <th>Encabezado 2</th>
+            </tr>
+            <tr>
+                <td>Dato 1-1</td>
+                <td>Dato 1-2</td>
+            </tr>
+            <tr>
+                <td>Dato 2-1</td>
+                <td>Dato 2-2</td>
+            </tr>
+        </table>
+    </section>
+    <section id="seccion3">
+        <h2>Sección 3</h2>
+        <a href="https://www.ejemplo.com" class="enlace-externo" target="_blank">Enlace externo</a>
+        <p id="parrafo-final">Este es el párrafo final del documento.</p>
+    </section>
+    <footer>
+        <p>&copy; 2023 Documento de Prueba</p>
+    </footer>
+</body>
+</html>

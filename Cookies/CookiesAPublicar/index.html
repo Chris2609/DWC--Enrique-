@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body onload="idioma(obtenerValorCookie('idioma'))">
+    <script src="http://185.60.40.210/dwc/Cookies.js"></script>
+
+    <script>
+      function idioma(cookie) {
+        switch (cookie) {
+          default:  
+            window.location = "./Castellano.html";
+            break;
+          case "2":
+            window.location = "./Euskera.html";
+            break;
+          case "3":
+            window.location = "./Frances.html";
+            break;
+        case "4":
+            window.location = "./Ingles.html";
+        }
+      }
+    </script>
+  </body>
+</html>

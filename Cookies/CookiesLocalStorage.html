@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="contenedor"></div>
+
+    <script>
+        const contenedor = document.getElementById("contenedor");
+
+        let contadorVisitas = parseInt(localStorage.getItem("contadorVisitas")) || 0;
+        contadorVisitas++;
+
+        localStorage.setItem("contadorVisitas", contadorVisitas);
+
+        let html = `<h1>Número de visitas: ${contadorVisitas}</h1>`;
+        
+        contenedor.innerHTML = html;
+    </script>
+</body>
+</html>
