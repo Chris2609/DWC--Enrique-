@@ -11,6 +11,8 @@
     <script>
         const contenedor = document.getElementById("contenedor");
 
+
+        function incrementarVisitas(){
         let contadorVisitas = parseInt(localStorage.getItem("contadorVisitas")) || 0;
         contadorVisitas++;
 
@@ -19,6 +21,9 @@
         let html = `<h1>Número de visitas: ${contadorVisitas}</h1>`;
         
         contenedor.innerHTML = html;
+        }
+
+        window.onload = incrementarVisitas;
     </script>
 </body>
 </html>
