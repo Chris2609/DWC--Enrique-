@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //pasamos el array de objetos y la propiedad que no queramos que se repita
+      function eliminarDuplicadosPorPropiedad(arrayObjetos, propiedad) {
+        //inicializamos el set y el resultado que devolveremos
+        const set = new Set();
+        const resultado = [];
+
+        arrayObjetos.forEach((objeto) => {
+          //si el objeto no se repite la propiedad
+          if (!set.has(objeto[propiedad])) {
+            //se guardará la propiedad en el set
+            set.add(objeto[propiedad]);
+            //guardará el objeto
+            resultado.push(objeto);
+          }
+        });
+        //devolverá el array de objetos sin repetir
+        return resultado;
+      }
+    </script>
+  </body>
+</html>
