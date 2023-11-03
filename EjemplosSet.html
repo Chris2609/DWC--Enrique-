@@ -7,6 +7,13 @@
   </head>
   <body>
     <script>
+      var arrayObjetos = [
+        { id: 10, other: "bla" },
+        { id: 15, other: "meh" },
+        { id: 10, other: "bla" },
+      ];
+      arrayObjetos = new Set(arrayObjetos);
+
       //pasamos el array de objetos y la propiedad que no queramos que se repita
       function eliminarDuplicadosPorPropiedad(arrayObjetos, propiedad) {
         //inicializamos el set y el resultado que devolveremos
