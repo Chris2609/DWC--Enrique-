@@ -31,6 +31,36 @@
     <script src="http://185.60.40.210/dwc/Juegos.js"></script>
 
     <script>
+
+  function CrearTablaCartas(N, M) {
+      // Paso 1: Generar una lista con valores aleatorios de 1 a NxM/2
+      let valores = [];
+      for (let i = 1; i <= (N * M) / 2; i++) {
+          valores.push(i);
+      }
+
+      // Paso 2: Duplicar los valores para que cada número aparezca exactamente 2 veces
+      valores = valores.concat(valores);
+
+      // Paso 3: Revolver los valores
+      for (let i = valores.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [valores[i], valores[j]] = [valores[j], valores[i]];
+      }
+
+      // Paso 4: Crear un array 2D y llenarlo con los valores mezclados
+      let resultado = [];
+      for (let i = 0; i < N; i++) {
+          let fila = [];
+          for (let j = 0; j < M; j++) {
+              fila.push(valores[i * M + j]);
+          }
+          resultado.push(fila);
+      }
+
+      return resultado;
+  }
+
       const contenedor = document.getElementById("contenedor");
       let htmlCartas = "";
       const aCartas = CrearTablaCartas(4, 10);
