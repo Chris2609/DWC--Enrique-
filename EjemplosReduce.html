@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prueba de Reduce</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Lato:wght@900&display=swap');
+
+
+    * {
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+      font-family: 'Lato', sans-serif;
+    }
+
+
+    h2 { margin: .2em 1em; }
+
+
+    #container {
+      padding: 1em;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1em;
+    }
+
+
+    .card {
+      width: 200px;
+      height: 300px;
+      border: 3px solid black;
+      border-radius: 5px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+
+    img {
+      width: 100%;
+      height: 150px;
+      background-image: url('https://picsum.photos/200/300');
+    }
+
+
+    p, div {
+      text-align: center;
+    }
+
+
+    .botonera {
+      display: flex;
+      justify-content: space-evenly;
+      border-top: 3px solid black;
+    }
+
+
+    .menos, .cantidad, .mas {
+      text-align: center;
+      padding: .3em;
+      width: 33%;
+      font-size: 1.2em;
+    }
+
+
+    .menos, .mas { color: white; }
+
+
+    .menos {
+      background-color: blue;
+      border-right: 3px solid black;
+    }
+
+
+    .mas {
+      background-color: red;
+      border-left: 3px solid black;
+    }
+  </style>
+</head>
+<body>
+  <div id="container">
+    <div class="card">
+      <img alt="">
+      <h2>Lorem ipsum dolor sit.</h2>
+      <p>Precio: </p>
+      <div class="botonera">
+        <div class="menos"> - </div>
+        <div class="cantidad"> 1 </div>
+        <div class="mas"> + </div>
+      </div>
+    </div>
+  </div>
+  <h2>El precio total es: <span id="precioTotal">0</span>€</h2>
+  <h2>El precio medio es: <span id="precioMedio">0</span>€</h2>
+  <h2>El precio maximo es: <span id="precioMaximo">0</span>€</h2>
+  <h2>Cantidad de producto que cuestan mas de 15€: <span id="masDe15">0</span></h2>
+  <script>
+    const container = document.getElementById('container')
+    const productos = [
+      {id: 0, cantidad: 0, precio: 1},
+      {id: 1, cantidad: 0, precio: 10},
+      {id: 2, cantidad: 0, precio: 30},
+      {id: 3, cantidad: 0, precio: 5},
+      {id: 4, cantidad: 0, precio: 55},
+      {id: 5, cantidad: 0, precio: 20},
+    ]
+    let productosHtml = ''
+
+
+    for (producto of productos) {
+      productosHtml += `<div class="card" id="producto${producto.id}">
+                          <img alt="">
+                          <h2>Lorem ipsum dolor sit.</h2>
+                          <p>Precio: ${producto.precio}€</p>
+                          <div class="botonera">
+                            <div class="menos" onclick="revisar(${producto.id}, -1)"> - </div>
+                            <div class="cantidad"> ${producto.cantidad}€ </div>
+                            <div class="mas" onclick="revisar(${producto.id}, 1)"> + </div>
+                          </div>
+                        </div>`
+    }
+
+
+    container.innerHTML = productosHtml
+
+
+    /*
+      Como funciona el metodo de arrays reduce() -> Como su nombre indica lo que hace es reducir un array en un solo valor, los parametros que admite son (en este orden):
+        acc -> El acumulador donde se deben guardar los valores
+        currentValue -> El valor actual de el array
+        index -> El indice de el array en el que esta actualmente
+        array -> El array sobre el que se utiliza el metodo reduce
+        initialValue -> Por cual valor empieza el acumulador
+     
+      Sintaxis -> array.reduce((acc, currentValue, index, array) => {
+
+
+      }, initialValue)
+    */
+
+
+    function comprobarPrecioTotal() {
+      const precioTotal = productos.reduce((acc, valorActual) => {
+        //Rellenar
+      }, 0)
+
+
+      document.getElementById('precioTotal').innerText = precioTotal
+    }
+
+
+    function comprobarPrecioMedio() {
+      const precioMedio = productos.reduce((acc, valorActual) => {
+        //Rellenar
+      }, 0)
+
+
+      document.getElementById('precioMedio').innerText = precioMedio.toFixed(2)
+    }
+
+
+    function comprobarPrecioMaximo() {
+      const precioMaximo = productos.reduce((acc, valorActual) => {
+        return valorActual.precio > acc && valorActual.cantidad != 0
+          ? valorActual.precio
+          : acc
+      }, 0)
+
+
+      document.getElementById('precioMaximo').innerText = precioMaximo
+    }
+
+
+    function comprobarProductosDeMasDe15Euros() {
+      const masDe15 = productos.reduce((acc, valorActual) => {
+        if (valorActual.precio > 15 && valorActual.cantidad > 0) acc.push(valorActual)
+        return acc
+      }, [])
+
+
+      document.getElementById('masDe15').innerText = masDe15.reduce((acc, valorActual) => acc + valorActual.cantidad, 0)
+    }
+
+
+    function revisar(id, cantidad) {
+      const producto = productos.find(product => product.id === id)
+      if (!(producto.cantidad == 0 && cantidad == -1)) producto.cantidad += cantidad
+      document.querySelector(`#producto${id} .cantidad`).innerText = producto.cantidad
+      comprobarPrecioTotal()
+      comprobarPrecioMedio()
+      comprobarPrecioMaximo()
+      comprobarProductosDeMasDe15Euros()
+    }
+  </script>
+</body>
+</html

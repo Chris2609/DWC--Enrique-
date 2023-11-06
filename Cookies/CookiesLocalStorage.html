@@ -1,29 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<body>
+  </head>
+  <body>
     <div id="contenedor"></div>
 
     <script>
-        const contenedor = document.getElementById("contenedor");
+      const contenedor = document.getElementById("contenedor");
 
+      function incrementarVisitas() {
 
-        function incrementarVisitas(){
+        anterior = localStorage.getItem("anteriorVisita") || 0;
+        
+        
+        var fecha = new Date();
+        anterior = (fecha.getTime() - anterior) / 1000;
+        localStorage.setItem("anteriorVisita", fecha.getTime());
+
+        
+
         let contadorVisitas = parseInt(localStorage.getItem("contadorVisitas")) || 0;
         contadorVisitas++;
 
         localStorage.setItem("contadorVisitas", contadorVisitas);
 
-        let html = `<h1>Número de visitas: ${contadorVisitas}</h1>`;
-        
-        contenedor.innerHTML = html;
-        }
+        let html = `<h1>Número de visitas: ${contadorVisitas}</h1> <h3>Tiempo desde la última recarga ${anterior}</h3>`;
 
-        window.onload = incrementarVisitas;
+        contenedor.innerHTML += html;
+      }
+
+      window.onload = incrementarVisitas;
     </script>
-</body>
+  </body>
 </html>

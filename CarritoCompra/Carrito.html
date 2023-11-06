@@ -1,0 +1,120 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Carrito de la compra</title>
+<style>
+        .MiImg {
+            max-width: 100%;
+            height: auto;
+            width: 50%;
+        }
+        table {
+            border-collapse: collapse;
+            text-align:center;
+            margin-left: 20%;
+
+
+        }
+
+
+        table, tr, td {
+            border: 2px solid #666;
+            padding: 10px;
+        }
+
+
+        #btnVaciar {
+            position: absolute;
+            top: 40px;
+            left: 150px;
+        }
+</style>
+<script src="Carrito.js"></script>
+</head>
+<body>
+
+
+<script>
+   
+    //Creamos la cesta
+    if (sessionStorage.Compra==undefined) {
+        aCompra={};
+        for (i=0;i<aArticulos.length;i++){
+            aCompra[aArticulos[i].id]=0;
+        }
+        sessionStorage.Compra=JSON.stringify(aCompra);
+    }else{
+        aCompra=JSON.parse(sessionStorage.Compra);
+    }
+
+
+    iTotal=0;
+
+
+    //Crear tabla
+    sCadena="<table ><tr><td>Articulo</td><td>Imagen</td><td>Precio</td></tr>";
+    for (i=0;i<aArticulos.length;i++){
+        sCadena+="<tr>";
+        sCadena+="<td>"+aArticulos[i].nombre+"</td>";
+        sCadena+="<td><img src="+aArticulos[i].src()+" class='MiImg'></td>";
+        sCadena+="<td>"+aArticulos[i].precio+"</td>";
+        sCadena+="<td> <input type='button' id='button' value='Comprar' onclick='Comprar(\""+ aArticulos[i].id +"\")'> </td>";
+        sCadena+="</tr>";
+
+
+        iTotal+=parseInt(aCompra[aArticulos[i].id]);
+    }
+    sCadena+="</table>";
+
+
+    if (iTotal==0){
+        sCadena='<img src="Mercado/Carrovacio.jpg" id="imCarro" width="108" height="98" alt="" title='+ImporteTotal()+'/>' + sCadena;
+    }else{
+        sCadena='<img style="cursor:pointer" src="Mercado/carrolleno.jpg" id="imCarro" width="108" height="98" alt="" title='+ImporteTotal()+' onclick="VerCarro()";/>' + sCadena;
+    }
+    sCadena+="<input type='button' id='btnVaciar' value='VaciarCompra' onclick='Vaciar()'>";
+
+
+    document.write(sCadena);
+
+
+    // Función para movernos a la página de comprar un artículo
+    function Comprar(sArticulo){
+        sessionStorage.IdComprando=sArticulo;
+        window.location="CompraArticulo.html";
+    }
+
+
+    // Función para movernos a la página de ver el carro
+    function VerCarro(){
+        window.location="VerCarro.html";
+    }
+
+
+    // Función para calcular el importe total de la compra
+    function ImporteTotal() {
+        let iPagar = 0;
+        for (i=0;i<aArticulos.length;i++){
+            if (aCompra[aArticulos[i].id]>0) {
+                iPagar += aArticulos[i].precio*aCompra[aArticulos[i].id];
+            }
+        }
+        return iPagar + '€';
+    }
+   
+    // Función para vaciar el carrito de la compra
+    function Vaciar() {
+        for (i=0;i<aArticulos.length;i++){
+            aCompra[aArticulos[i].id] = 0;
+            sessionStorage.Compra=JSON.stringify(aCompra);
+            location.reload();
+        }
+    }
+
+
+</script>
+
+
+</body>
+</html>

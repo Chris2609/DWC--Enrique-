@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ver carro</title>
+    <script src="Carrito.js"></script>
+  </head>
+  <style>
+    .MiImg {
+      max-width: 100%;
+      height: auto;
+      width: 50%;
+    }
+    table {
+      border-collapse: collapse;
+      text-align: center;
+      margin-left: 20%;
+    }
+
+    table,
+    tr,
+    td {
+      border: 2px solid #666;
+      padding: 10px;
+    }
+
+    #btnVaciar {
+      position: absolute;
+      top: 40px;
+      left: 150px;
+    }
+  </style>
+  <body>
+    <script>
+      var listaArticulos = JSON.parse(sessionStorage.getItem("Compra"));
+      let idComprando = sessionStorage.getItem("IdComprando");
+
+      let html = "";
+      html += "<table ><tr><td>Articulo</td><td>Imagen</td><td>Cantidad</td><td>Precio</td><td>Total</td></tr>";
+
+      totalProductos = [];
+      existenProductos = false;
+      for (const articulo in listaArticulos) {
+        if(listaArticulos[articulo] != 0){
+
+            articuloActual = aArticulos.find(articuloLista => articuloLista.id == articulo);
+
+            html+="<tr>";
+            html+="<td>"+articuloActual.nombre+"</td>";
+            html+="<td><img src="+articuloActual.src()+" class='MiImg'></td>";
+            html+="<td>"+listaArticulos[articulo]+"</td>";
+            html+="<td>"+articuloActual.precio+"</td>";
+            html+="<td>"+ listaArticulos[articulo] * articuloActual.precio +"</td>";
+            html+="<td> <input type='button' id='button' value='Eliminar' onclick='Eliminar(\""+ articuloActual.id +"\")'> </td>";
+            html+="</tr>";
+            
+            existenProductos = true;
+            totalProductos.push(listaArticulos[articulo] * articuloActual.precio);
+        }
+      }
+
+      if(existenProductos == false){
+        window.location = "./Carrito.html";
+      }
+
+      html += "<tr><td colspan='6'><input type='button' id='button' value='Pagar' onclick='Pagar(\""+ articuloActual.id +"\")'></td></tr>";
+      html += "</table>";
+      document.write(html);
+
+      function Eliminar(idArticulo){
+        listaArticulos[idArticulo] = 0;
+        sessionStorage.Compra=JSON.stringify(listaArticulos);
+        location.reload();
+      }
+
+      function Pagar(){
+        var sumaTotal = totalProductos.reduce((valorSumar, valorActual) => valorSumar + valorActual);
+        window.alert("El precio total es de: " + sumaTotal);
+
+      }
+    </script>
+
+    <a href="Carrito.html"><img src="Mercado/atras.png" width="150px"></a>
+
+  </body>
+</html>

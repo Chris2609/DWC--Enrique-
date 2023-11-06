@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Añadir productos</title>
+    <script src="Carrito.js"></script>
+  </head>
+  <style>
+    .MiImg {
+      max-width: 100%;
+      height: auto;
+      width: 50%;
+    }
+    table {
+      border-collapse: collapse;
+      text-align: center;
+      margin-left: 20%;
+    }
+
+    table,
+    tr,
+    td {
+      border: 2px solid #666;
+      padding: 10px;
+    }
+
+    #btnVaciar {
+      position: absolute;
+      top: 40px;
+      left: 150px;
+    }
+  </style>
+  <body>
+    <script>
+      let html = "";
+      let idComprando = sessionStorage.getItem("IdComprando");
+      articuloActual = aArticulos.find(articulo => articulo.id == idComprando);
+
+      html += "<table ><tr><td>Articulo</td><td>Imagen</td><td>Cantidad</td><td>Precio</td></tr>";
+
+      html+="<tr>";
+      html+="<td>"+articuloActual.nombre+"</td>";
+      html+="<td><img src="+articuloActual.src()+" class='MiImg'></td>";
+      html+="<td><input type='number' min='0' id= 'cantidad'></input></td>";
+      html+="<td>"+articuloActual.precio+"</td>";
+      html+="<td> <input type='button' id='button' value='Añadir' onclick='Anadir(\""+ articuloActual.id +"\")'> </td>";
+      html+="</tr>";
+
+      html += "</table>";
+
+      var listaArticulos = JSON.parse(sessionStorage.getItem("Compra"));
+
+      function Anadir(idActual){
+          if(cantidad.value != "" && cantidad.value > 0){
+            listaArticulos[idActual] += parseInt(cantidad.value);
+            sessionStorage.Compra=JSON.stringify(listaArticulos);
+          }
+      }
+
+      document.write(html);
+    </script>
+
+    <a href="Carrito.html"><img src="Mercado/atras.png" width="150px"></a>
+  </body>
+</html>
