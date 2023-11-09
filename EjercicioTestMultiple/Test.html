@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <style></style>
+  <body>
+    <div id="contenedor"></div>
+
+    <script>
+      let html = "";
+      var iPreguntas = 10;
+      var aPreguntas = [];
+      var aRespuestas = [];
+      aPreguntas[1] = "Paris es la capital de Alemania";
+      aRespuestas[1] = false;
+      aPreguntas[2] = "Atenas es la capital de Grecia";
+      aRespuestas[2] = true;
+      aPreguntas[3] = "Amsterdam es la capital de Paises Bajos";
+      aRespuestas[3] = true;
+      aPreguntas[4] = "Viena es la captital de Austria";
+      aRespuestas[4] = true;
+      aPreguntas[5] = "Budapest es la capital de Rusia";
+      aRespuestas[5] = false;
+      aPreguntas[6] = "Praga es la capital de Rumania";
+      aRespuestas[6] = false;
+      aPreguntas[7] = "Minsk es la capital de Bielorrusia";
+      aRespuestas[7] = true;
+      aPreguntas[8] = "Varsovia es la capital de Polonia";
+      aRespuestas[8] = true;
+      aPreguntas[9] = "Sofia es la capital de Belgica";
+      aRespuestas[9] = false;
+      aPreguntas[10] = "Riga es la capital de Letonia";
+      aRespuestas[10] = true;
+
+      for (let i = 1; i <= iPreguntas; i++) {
+        html += `<label for="pregunta${i}" id="pregunta${i}">${aPreguntas[i]}</label><input name="pregunta${i}" type="checkbox"> <br><br>`;
+      }
+
+      html += `<br><button onclick="Comprobar()">Comprobar</button>`;
+
+      contenedor.innerHTML = html;
+
+      function Comprobar() {
+        var inputs = document.querySelectorAll("input");
+        numPregunta = 1;
+        inputs.forEach(input => {
+          
+          if(input.name == document.getElementById("pregunta"+numPregunta).id && input.checked == aRespuestas[numPregunta]){
+            
+            document.getElementById("pregunta"+numPregunta).style.backgroundColor = "green";
+
+            numPregunta++;
+          } else if(input.checked != aRespuestas[numPregunta]){
+            document.getElementById("pregunta"+numPregunta).style.backgroundColor = "red";
+            numPregunta++;
+          }
+        });
+      }
+    </script>
+  </body>
+</html>
