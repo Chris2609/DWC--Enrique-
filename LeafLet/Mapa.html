@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.css"
+    />
+  </head>
+
+  <style>
+    img.huechange {
+      filter: hue-rotate(120deg);
+    }
+  </style>
+  <body>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"></script>
+
+    <div id="mapid" style="height: 100vh; width: 100%"></div>
+
+    <script>
+      var lugares = [
+        { nombre: "Irun", latitud: 43.339, longitud: -1.7896 },
+        { nombre: "Donosti", latitud: 43.3183, longitud: -1.9812 },
+        { nombre: "Renteria", latitud: 43.3119, longitud: -1.8985 },
+        { nombre: "Mi casa", latitud: 43.30848, longitud: -1.8904 },
+      ];
+
+      var map = L.map("mapid").setView([43.34564, -1.79733], 8);
+      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        attribution: "© OpenStreetMap contributors",
+      }).addTo(map);
+
+      //   //Añadir marcador
+      //   var marker = L.marker([43.345, -1.798]).addTo(map);
+
+      //   //Añadir popup al marcador al hacer click
+      //   marker.bindPopup("Plaiaundi"); //.openPopup();
+
+      //   //Añadir tooltip
+      //   marker.bindTooltip("Plaiaundi", {
+      //     permanent: false, // El tooltip no será permanente
+      //     direction: "top", // Se mostrará encima del marcador
+      //     offset: L.point(-15, -20), // Desplazamiento del tooltip respecto al marcador
+      //   });
+
+      //   var marcadorHondarribi = L.marker([43.375284, -1.794178]).addTo(map);
+      //   marcadorHondarribi.bindTooltip("Hondarribi");
+
+      //   var marcadorDonosti = L.marker([43.29181, -1.98851]).addTo(map);
+      //   marcadorHondarribi.bindTooltip("Donosti");
+
+      lugares.forEach(function(lugar) {
+        var marker = L.marker([lugar.latitud, lugar.longitud]).addTo(map);
+        marker.bindTooltip(lugar.nombre, {
+          permanent: false, // El tooltip no será permanente
+          direction: "top", // Se mostrará encima del marcador
+          offset: L.point(-15, -20), // Desplazamiento del tooltip respecto al marcador
+        })
+
+        //cambiar color
+        marker._icon.classList.add("huechange");
+
+        marker.on("click", function(){
+            console.log(lugar.nombre);
+        })
+      });
+    </script>
+  </body>
+</html>

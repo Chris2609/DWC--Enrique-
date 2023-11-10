@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <style>
+    table {
+      border-collapse: collapse;
+    }
+
+    table,
+    tr,
+    td {
+      border: 2px solid #666;
+      padding: 10px;
+    }
+  </style>
+  <body onload="Filtrar()">
+    <select id="filtroMuni" onchange="Filtrar()">
+      <option value="Todos" selected>Todos</option>
+      <option value="IRUN">Irun</option>
+      <option value="HONDARRIBIA">Hondarribia</option>
+      <option value="ERRENTERIA">Errenteria</option>
+      <option value="DONOSTIA/SAN SEBASTIÁN">Donosti</option>
+      <option value="PASAIA">Pasaia</option>
+    </select>
+
+    <div id="contenedor"></div>
+
+    <script src="Ofertas.js"></script>
+    <script>
+      const contenedor = document.getElementById("contenedor");
+      let html = "";
+
+      ofertasEmpleo.sort(function (a, b) {
+        if (a.municipio > b.municipio) {
+          return 1;
+        }
+        if (a.municipio < b.municipio) {
+          return -1;
+        }
+        // a must be equal to b
+        return 0;
+      });
+
+      function Filtrar() {
+        filtro = document.getElementById("filtroMuni").value;
+
+        switch (filtro) {
+          case "Todos":
+          html = "";
+          contenedor.innerHTML = html;
+            html += `<table border = "1">`;
+            html += `<tr>`;
+            html += `<td  colspan = "6" style="font-size: 25px; text-align: center">${ofertasEmpleo.length} Ofertas Lanbide</td>`;
+
+            html += `</tr>`;
+
+            ofertasEmpleo.forEach((oferta) => {
+              html += `<tr>`;
+              html += `<td>${oferta.municipio}</td>`;
+              html += `<td>${oferta.desEmpleo}</td>`;
+              html += `<td>${oferta.fecPub}</td>`;
+              html += `<td><a href="${oferta.url}">Lanbide</a></td>`;
+
+              html += `</tr>`;
+            });
+
+            html += `</table>`;
+
+            contenedor.innerHTML = html;
+            break;
+
+          default:
+          html = "";
+          contenedor.innerHTML = html;
+
+            ofertasFiltradas = ofertasEmpleo.filter(oferta => oferta.municipio == filtro)
+            html += `<table border = "1">`;
+            html += `<tr>`;
+                html += `<td  colspan = "6" style="font-size: 25px; text-align: center">${ofertasFiltradas.length} Ofertas Lanbide</td>`;
+
+            html += `</tr>`;
+
+            ofertasFiltradas.forEach((ofertasFiltradas) => {
+              html += `<tr>`;
+              html += `<td>${ofertasFiltradas.municipio}</td>`;
+              html += `<td>${ofertasFiltradas.desEmpleo}</td>`;
+              html += `<td>${ofertasFiltradas.fecPub}</td>`;
+              html += `<td><a href="${ofertasFiltradas.url}">Lanbide</a></td>`;
+
+              html += `</tr>`;
+            });
+
+            html += `</table>`;
+
+            contenedor.innerHTML = html;
+            break;
+        }
+      }
+    </script>
+  </body>
+</html>

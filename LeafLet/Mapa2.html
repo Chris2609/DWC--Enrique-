@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Leaflet Mapa Básico</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ 
+  <!-- Incluir la hoja de estilo CSS de Leaflet desde un CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.css" />
+
+
+  <!-- Incluir el JavaScript de Leaflet desde un CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"></script>
+
+
+  <style>
+    /* Estilo para el contenedor del mapa */
+    #mapid { height: 100vh;width:100%; }
+  </style>
+</head>
+<body>
+
+
+<div id="mapid"></div>
+
+
+<script>
+  // Inicializar el mapa y establecer las coordenadas y el nivel de zoom
+  var map = L.map('mapid').setView([43.338, -1.788], 8);
+
+
+  // Añadir una capa de tiles de OpenStreetMap
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '© OpenStreetMap contributors'
+  }).addTo(map);
+
+
+  var marker = L.marker([43.3119, -1.8985]).addTo(map);
+  //marker.bindPopup("Rentería (Errenteria)").openPopup(); //Abierto
+  //marker.bindPopup("Rentería (Errenteria)"); //Cerrado
+  /*marker.bindTooltip("Rentería (Errenteria)", {
+        permanent: false,    // El tooltip no será permanente
+        direction: 'top',    // Se mostrará encima del marcador
+        offset: L.point(0, -20) // Desplazamiento del tooltip respecto al marcador
+  })*/
+
+
+  marker.on('click', function() {
+      // Aquí lugar es accesible debido al ámbito de la clausura
+      console.log('Click en Renteria ');
+  })
+</script>
+
+
+</body>
+</html>
