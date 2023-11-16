@@ -15,12 +15,9 @@
 
         anterior = localStorage.getItem("anteriorVisita") || 0;
         
-        
         var fecha = new Date();
         anterior = (fecha.getTime() - anterior) / 1000;
         localStorage.setItem("anteriorVisita", fecha.getTime());
-
-        
 
         let contadorVisitas = parseInt(localStorage.getItem("contadorVisitas")) || 0;
         contadorVisitas++;

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.css"
+    />
+  </head>
+  <body onload="ObtenerIdioma()">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"></script>
+    <script src="Ofertas.js"></script>
+
+    <button
+      style="display: none"
+      id="volver"
+      onclick="mapid.style.display = 'block'; contenedor.style.display = 'none'; volver.style.display = 'none'"
+    >
+      Volver
+    </button>
+
+    <select id="filtroMuni" onchange="Idioma()">
+        <option value="0" selected>Castellano</option>
+        <option value="1">Euskera</option>
+      </select>
+
+    <div id="mapid" style="height: 100vh; width: 100%"></div>
+
+    <div id="contenedor"></div>
+
+    <script>
+
+        var filtro;
+      //inicio mapa
+      var lugares = [
+        { nombre: "Irun", latitud: 43.339, longitud: -1.7896 },
+        {
+          nombre: "Donostia/San Sebastián",
+          latitud: 43.3183,
+          longitud: -1.9812,
+        },
+        { nombre: "Errenteria", latitud: 43.3119, longitud: -1.8985 },
+        { nombre: "Hondarribia", latitud: 43.3748851, longitud: -1.8239709 },
+        { nombre: "Pasaia", latitud: 43.3253, longitud: -1.92707 },
+      ];
+
+      var map = L.map("mapid").setView([43.34564, -1.79733], 12);
+      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        attribution: "© OpenStreetMap contributors",
+      }).addTo(map);
+
+      lugares.forEach(function (lugar) {
+        var marker = L.marker([lugar.latitud, lugar.longitud]).addTo(map);
+        marker.on("click", function () {
+          mapid.style.display = "none";
+          volver.style.display = "block";
+
+          filtro = lugar.nombre.toUpperCase();
+          Filtrar(filtro);
+        });
+        marker.bindTooltip(lugar.nombre, {
+          permanent: false, // El tooltip no será permanente
+          direction: "top", // Se mostrará encima del marcador
+          offset: L.point(-15, -20), // Desplazamiento del tooltip respecto al marcador
+        });
+      });
+      //fin mapa
+
+      const contenedor = document.getElementById("contenedor");
+      let html = "";
+
+
+      function ObtenerIdioma(){
+        idioma = localStorage.getItem("idioma") || 0;
+      }
+
+      //Localstorage set idioma
+      function Idioma(){
+        localStorage.setItem("idioma", filtroMuni.value);
+        Filtrar(filtro);
+      }
+
+
+      function Filtrar(filtro) {
+        // filtro = document.getElementById("filtroMuni").value;
+        contenedor.style.display = "block";
+
+        if (idioma == 0) {
+              ofertasFiltradas = ofertasEmpleo.filter(
+                (oferta) => oferta.municipio == filtro
+              );
+            } else if (idioma == 1) {
+              ofertasFiltradas = ofertasEmpleoEUS.filter(
+                (oferta) => oferta.municipio == filtro
+              );
+            }
+            
+        switch (filtro) {
+          case "Todos":
+            html = "";
+            contenedor.innerHTML = html;
+            html += `<table border = "1">`;
+            html += `<tr>`;
+            html += `<td  colspan = "6" style="font-size: 25px; text-align: center">${ofertasEmpleo.length} Ofertas Lanbide</td>`;
+
+            html += `</tr>`;
+
+            ofertasEmpleo.forEach((oferta) => {
+              html += `<tr>`;
+              html += `<td>${oferta.municipio}</td>`;
+              html += `<td>${oferta.desEmpleo}</td>`;
+              html += `<td>${oferta.fecPub}</td>`;
+              html += `<td><a href="${oferta.url}">Lanbide</a></td>`;
+
+              html += `</tr>`;
+            });
+
+            html += `</table>`;
+
+            contenedor.innerHTML = html;
+            break;
+
+          default:
+            html = "";
+            contenedor.innerHTML = html;
+
+            html += `<table border = "1">`;
+            html += `<tr>`;
+            html += `<td  colspan = "6" style="font-size: 25px; text-align: center">${ofertasFiltradas.length} Ofertas Lanbide</td>`;
+
+            html += `</tr>`;
+
+            ofertasFiltradas.forEach((ofertasFiltradas) => {
+              html += `<tr>`;
+              html += `<td>${ofertasFiltradas.municipio}</td>`;
+              html += `<td>${ofertasFiltradas.desEmpleo}</td>`;
+              html += `<td>${ofertasFiltradas.fecPub}</td>`;
+              html += `<td><a href="${ofertasFiltradas.url}">Lanbide</a></td>`;
+
+              html += `</tr>`;
+            });
+
+            html += `</table>`;
+
+            contenedor.innerHTML = html;
+            break;
+        }
+      }
+    </script>
+  </body>
+</html>
