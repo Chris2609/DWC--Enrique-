@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body style="position: relative">
+    <br />
+    <div
+      id="btnPulsado"
+      style="border: 1px solid black; display: inline; padding: 10px"
+    >
+      Botón pulsado:
+    </div>
+
+    <div
+      id="coordenadas"
+      style="border: 1px solid black; display: inline; padding: 10px"
+    >
+      Coordenadas:
+    </div>
+
+    <div
+      id="scroll"
+      style="border: 1px solid black; display: inline; padding: 10px"
+    >
+      Scroll: 1
+    </div>
+
+    <script>
+      document.addEventListener(
+        "mousedown",
+
+        function (event) {
+          Botones(event);
+        }
+      );
+
+      function Botones() {
+        switch (event.button) {
+          case 0:
+            document.getElementById(
+              "btnPulsado"
+            ).innerHTML = `Botón pulsado: Izquierdo`;
+            break;
+          case 1:
+            document.getElementById(
+              "btnPulsado"
+            ).innerHTML = `Botón pulsado: Medio`;
+            break;
+          case 2:
+            document.getElementById(
+              "btnPulsado"
+            ).innerHTML = `Botón pulsado: Derecho`;
+            break;
+        }
+      }
+
+      document.addEventListener("mousemove", function (event) {
+        Coordenadas(event);
+      });
+
+      function Coordenadas() {
+        document.getElementById(
+          "coordenadas"
+        ).innerHTML = `Coordenadas: X = ${event.clientX}, Y = ${event.clientY}`;
+      }
+
+      //   document.oncontextmenu = function(){return false}
+      document.addEventListener("contextmenu", function (event) {
+        event.preventDefault();
+      });
+
+      document.addEventListener("wheel", function (event) {
+        ScrollSumarRestar();
+      });
+
+      contador = 0;
+      function ScrollSumarRestar() {
+        if (event.deltaY < 0) {
+          if (event.altKey) {
+            contador += 10;
+            document.getElementById("scroll").innerHTML = contador;
+          } else {
+            contador++;
+            document.getElementById("scroll").innerHTML = contador;
+          }
+        }
+        if (event.deltaY > 0) {
+          if (event.altKey) {
+            contador -= 10;
+            document.getElementById("scroll").innerHTML = contador;
+          } else {
+            contador--;
+            document.getElementById("scroll").innerHTML = contador;
+          }
+        }
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,90 @@
+<!doctype html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>Documento sin título</title>
+
+	<style>
+		table,
+		tbody,
+		tr,
+		td {
+			margin: 15px;
+			padding: 15px;
+			border-collapse: collapse;
+			border: black 2px solid;
+		}
+	</style>
+</head>
+<script type="text/javascript">
+	var N=5,M=5;
+	var aSituacion = new Array(N);
+	for (f = 0; f < N; f++) {
+		aSituacion[f] = new Array(M);
+		for (c = 0; c < M; c++) {
+			aSituacion[f][c] = 1;
+		}
+	}
+
+	document.write("<table border='1'>");
+	for (i = 0; i < N; i++) {
+		document.write("<tr>");
+		for (x = 0; x < M; x++) {
+			document.write('<td><img width="51" height="84" src="Baraja/1.png" id="im' + i + x + '" onClick="Cambio(' + i + ',' + x + ')"></td>');
+		}
+		document.write("</tr>");
+	}
+	document.write("</table>");
+
+	//Cada vez que entra una carta a esta funcion mira el scr y lo cambia por un numero superior
+	function Cambio(f, c) {
+		if(aSituacion[f][c] >= 10){
+            aSituacion[f][c] = 1;
+        }else{
+            aSituacion[f][c]++;
+        }
+		carta = document.getElementById("im"+f+c);
+        carta.src = `Baraja/${aSituacion[f][c]}.png`;
+
+	}
+	//Volvemos a crear la tabla
+	function Reset() {
+
+		// tambien he hecho la version volviendo a crear la tabla (basicamente he copiado el código original y añadido el boton de reset)
+		// pero por algun motivo aún usando document.write solo me elimina el contenido anterior la primera vez, y luego me añade una tabla tras otra
+		
+		// document.write("<table border='1'>");
+		// for (i = 0; i < N; i++) {
+		// 	document.write("<tr>");
+		// 	for (x = 0; x < M; x++) {
+		// 		aSituacion[i][x] = 1;
+		// 		document.write('<td><img width="51" height="84" src="Baraja/1.png" id="im' + i + x + '" onClick="Cambio(' + i + ',' + x + ')"></td>');
+		// 	}
+		// document.write("</tr>");
+		// }
+		// document.write("</table>");
+
+		// document.write('<input type="button" name="button" id="button" value="Reset" onclick="Reset()">');
+
+		//en vez de volver a crear la tabla me parece mejor restablecer los valores del array/matriz "aSitucaion" a
+		// sus valores originales(1) y en base a eso ir reemplazando las imagenes con estos valores
+		for (i = 0; i < N; i++) {
+            for (x = 0; x < M; x++) {
+                aSituacion[i][x] = 1;
+                carta = document.getElementById("im" + i + x);
+                carta.src = `Baraja/1.png`;
+            }
+		}
+	}
+
+
+
+//-->
+</script>
+
+<body>
+	<input type="button" name="button" id="button" value="Reset" onclick="Reset()">
+</body>
+
+</html>

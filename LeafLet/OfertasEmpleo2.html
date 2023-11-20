@@ -21,18 +21,18 @@
       Volver
     </button>
 
-    <select id="filtroMuni" onchange="Idioma()">
-        <option value="0" selected>Castellano</option>
-        <option value="1">Euskera</option>
-      </select>
+    <select id="filtroMuni" onchange="CambiarIdioma()">
+      <option value="0" selected>Castellano</option>
+      <option value="1">Euskera</option>
+    </select>
 
     <div id="mapid" style="height: 100vh; width: 100%"></div>
 
     <div id="contenedor"></div>
 
     <script>
-
-        var filtro;
+      var filtro;
+      var idioma = 0;
       //inicio mapa
       var lugares = [
         { nombre: "Irun", latitud: 43.339, longitud: -1.7896 },
@@ -71,32 +71,32 @@
       const contenedor = document.getElementById("contenedor");
       let html = "";
 
-
-      function ObtenerIdioma(){
+      function ObtenerIdioma() {
         idioma = localStorage.getItem("idioma") || 0;
+        document.getElementById("filtroMuni").value = idioma;
       }
 
       //Localstorage set idioma
-      function Idioma(){
+      function CambiarIdioma() {
         localStorage.setItem("idioma", filtroMuni.value);
+        idioma = filtroMuni.value;
         Filtrar(filtro);
       }
-
 
       function Filtrar(filtro) {
         // filtro = document.getElementById("filtroMuni").value;
         contenedor.style.display = "block";
 
         if (idioma == 0) {
-              ofertasFiltradas = ofertasEmpleo.filter(
-                (oferta) => oferta.municipio == filtro
-              );
-            } else if (idioma == 1) {
-              ofertasFiltradas = ofertasEmpleoEUS.filter(
-                (oferta) => oferta.municipio == filtro
-              );
-            }
-            
+          ofertasFiltradas = ofertasEmpleo.filter(
+            (oferta) => oferta.municipio == filtro
+          );
+        } else if (idioma == 1) {
+          ofertasFiltradas = ofertasEmpleoEUS.filter(
+            (oferta) => oferta.municipio == filtro
+          );
+        }
+
         switch (filtro) {
           case "Todos":
             html = "";

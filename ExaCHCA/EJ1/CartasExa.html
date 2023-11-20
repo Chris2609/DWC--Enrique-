@@ -1,0 +1,142 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Cartas</title>
+    <style>
+        table,
+        tbody,
+        tr,
+        td {
+            margin: 15px;
+            padding: 15px;
+            border-collapse: collapse;
+            border: black 2px solid;
+        }
+    </style>
+</head>
+<script type="text/javascript">
+    var iF, iC, iF2, iC2;
+    N = 4;
+    M = 5;
+    var bMostrando = false;
+    var bPrimera = true;
+    bPista = false;
+    aTabla = CrearTablaCartas(N, M);
+    var aSituacion = new Array(N);
+    for (f = 0; f < N; f++) {
+        aSituacion[f] = new Array(M);
+        for (c = 0; c < M; c++) {
+            aSituacion[f][c] = false;
+        }
+    }
+    document.write("<table border='1'>");
+    for (i = 0; i < N; i++) {
+        document.write("<tr>");
+        for (x = 0; x < M; x++) {
+            document.write('<td><img width="51" height="84" src="Baraja/0.png" id="im' + i + x + '" onClick="Cambio(' + i + ',' + x + ')"</td>');
+        }
+        document.write("</tr>");
+    }
+    document.write("</table>");
+    function CrearTablaCartas(N, M) {
+        var aTabla = new Array(N);
+        for (f = 0; f < N; f++) {
+            aTabla[f] = new Array(M);
+        }
+        for (f = 0; f < N; f++) {
+            for (c = 0; c < M; c++) {
+                bRepe = true;
+                while (bRepe) {
+                    bRepe = false;
+                    iAzar = Math.floor(Math.random() * N * M);
+                    for (iFila = 0; iFila <= f; iFila++) {
+                        for (iCol = 0; iCol < M; iCol++) {
+                            if (aTabla[iFila][iCol] == iAzar) {
+                                bRepe = true;
+                            }
+                        }
+                    }
+                }
+                aTabla[f][c] = iAzar;
+                if (iAzar == 0) {
+                    f0 = f;
+                    c0 = c;
+                }
+            }
+        }
+        for (f = 0; f < N; f++) {
+            for (c = 0; c < M; c++) {
+                if (aTabla[f][c] > (N * M / 2) - 1) aTabla[f][c] -= N * M / 2;
+            }
+        }
+        return (aTabla);
+    }
+    function Cambio(f, c) {
+        if (bPista) return;
+        if ((aSituacion[f][c]) || (bMostrando)) return
+        if ((iF == f) & (iC == c)) return;
+        document.images['im' + f + c].src = 'Baraja/' + (aTabla[f][c] + 1) + '.png';
+        if (bPrimera) {
+            bPrimera = false;
+            iF = f;
+            iC = c;
+            return
+        }
+        else {
+            if (aTabla[f][c] == aTabla[iF][iC]) {
+                //bingo
+                aSituacion[f][c] = true;
+                aSituacion[iF][iC] = true;
+                bPrimera = true;
+            }
+            else {
+                bPrimera = true;
+                bMostrando = true;
+                iF2 = f;
+                iC2 = c;
+                setTimeout("Ocultar()", 1000);
+            }
+        }
+    }
+    function Ocultar() {
+        bMostrando = false;
+        document.images['im' + iF + iC].src = 'Baraja/0.png';
+        document.images['im' + iF2 + iC2].src = 'Baraja/0.png';
+    }
+   function FinPista() {
+
+        // Al igual que en la pista recorremos las filas y columnas, y en caso de que no estuviesen 
+        // reveladas anteriormente (true) utilizando el array de booleans "aSituacion", las volvemos a poner a 0.png (boca abajo)
+        for (let fila = 0; fila < N; fila++) {
+            for (let columna = 0; columna < M; columna++) {
+                if (!aSituacion[fila][columna]) {
+                    document.images['im' + fila + columna].src = 'Baraja/0.png';
+                }
+            }
+        }
+
+           // Ponemos bPista a false para que el usuario pueda volver a pulsar las cartas
+           bPista = false;  
+   }
+   function Pista() {
+
+    //ponemos la variable bPista en "true" para que el usuario no pueda realizar clics mientras esta activa la pista
+    bPista = true;
+    
+    //recorremos las filas y columnas de latabla dando en cada vuelta del "for" la vuelta a la carta de esa ubicacion
+    for (let fila = 0; fila < N; fila++) {
+        for (let columna = 0; columna < M; columna++) {
+            document.images['im' + fila + columna].src = 'Baraja/' + (aTabla[fila][columna] + 1) + '.png';
+        }
+    }
+    setTimeout(FinPista, 2000)
+    }
+
+</script>
+<body>
+    <input type="button" name="button" id="button" value="Pista" onclick="Pista()">
+</body>
+
+</html>
