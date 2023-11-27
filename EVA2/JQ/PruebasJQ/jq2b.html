@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>jQuery</title>
+    <link rel="stylesheet" type="text/css" href="jqpruebas.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  </head>
+  <body>
+    <button>Alternar</button>
+    <p>Esto está en una etiqueta p</p>
+    <p>Esto está en una segunda etiqueta p</p>
+
+    <script>
+      $(document).ready(function () {
+        $("button").click(function () {
+          $("p").toggle();
+        });
+      });
+    </script>
+  </body>
+</html>
