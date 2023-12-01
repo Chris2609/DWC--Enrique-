@@ -1,12 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-</head>
-<body>
+  </head>
+  <style>
+    p{
+        font-size: 10px;
+    }
+  </style>
+  <body>
+    <button id="btn24">Todo 24px</button>
+    <button id="mas2">Sumar 2</button>
+    <button id="menos2">Restar 2</button>
+
     <p>1</p>
     <p>2</p>
     <p>3</p>
@@ -27,5 +36,35 @@
     <p>18</p>
     <p>19</p>
     <p>20</p>
-</body>
+  </body>
+
+  <script>
+    tamano = 10;
+    $(document).ready(function () {
+        $("button#btn24").click(function(){
+            $("p").css("font-size","24px");
+            tamano = 24;
+        });
+        $("button#mas2").click(function(){
+            $("p").css("font-size", tamano + 2 + "px");
+            tamano+= 2;
+        });
+        $("button#menos2").click(function(){
+            $("p").css("font-size", tamano - 2 + "px");
+            tamano-= 2;
+        });
+        $("p").click(function(){
+            tamanoP = $(this).css("font-size");
+            $(this).css("font-size", parseInt(tamanoP) + 2 + "px");
+        });
+        $("p").on("contextmenu", function(){
+            tamanoP = $(this).css("font-size");
+            $(this).css("font-size", parseInt(tamanoP) - 2 + "px");
+        });
+    });
+
+    document.addEventListener("contextmenu", function (event) {
+        event.preventDefault();
+      });
+  </script>
 </html>

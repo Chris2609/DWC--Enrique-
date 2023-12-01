@@ -19,9 +19,9 @@
       style="visibility: hidden; position: absolute; background-color: grey"
     >
       <ul>
-        <li><a href="https://www.google.com/">Google</a></li>
-        <li><a href="https://www.bing.com/">Bing</a></li>
-        <li><a href="https://www.ask.com/">Yahoo</a></li>
+        <li><a id="google" onclick="Buscar(this.id)">Google</a></li>
+        <li><a id="bing" onclick="Buscar(this.id)">Bing</a></li>
+        <li><a id="ask" onclick="Buscar(this.id)">Ask</a></li>
       </ul>
     </div>
 
@@ -32,6 +32,9 @@
 
       document.addEventListener("mousedown", function (event) {
         if (event.button == 2) {
+          seleccion = document.getSelection();
+          busqueda = seleccion.toString();
+
           if (window.innerWidth - 90 < event.clientX) {
             document.getElementById("menuContextual").style.left =
               event.clientX - 90 + "px";
@@ -57,9 +60,19 @@
           }, 100);
         }
       });
-
-      seleccion = getSelection();
-      console.log(seleccion.toString());
+      function Buscar(buscador) {
+        switch (buscador) {
+          case "google":
+            window.location.href = `https://www.google.com/search?q=${busqueda}`;
+            break;
+          case "bing":
+            window.location.href = `https://www.bing.com/search?q=${busqueda}`;
+            break;
+          case "ask":
+            window.location.href = `https://www.ask.com/web?q=${busqueda}`;
+            break;
+        }
+      }
     </script>
   </body>
 </html>

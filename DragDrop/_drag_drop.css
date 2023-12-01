@@ -1,0 +1,23 @@
+#inicio, #destino {
+    width: 150px;
+    height: 150px;
+    border: 1px solid black;
+    position: fixed;
+}
+
+#inicio {
+    top: 200px;
+    left: 20px;
+    border-color: red;
+}
+
+#destino {
+    top: 200px;
+    left: 350px;
+    border-color: green;
+}
+
+#piezaAjedrez {
+    width:auto;
+    height: auto;
+}
