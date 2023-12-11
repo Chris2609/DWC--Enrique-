@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<link rel="stylesheet" href="ui1/jquery-ui-1.13.2.custom/jquery-ui.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="ui1/jquery-ui-1.13.2.custom/jquery-ui.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#tabs").tabs({
+            collapsible: true,
+        });
+    });
+</script>
+
+<body>
+    <div id="tabs">
+        <ul>
+            <li><a href="#tabs-1">SMR</a></li>
+            <li><a href="#tabs-2">DAW</a></li>
+            <li><a href="#tabs-3">DAM</a></li>
+            <li><a href="#tabs-4">ASIR</a></li>
+        </ul>
+        <div id="tabs-1">
+            <p> 5h Sistemas operativos monopuesto.</p>
+            <p> 7h Aplicaciones ofimáticas.</p>
+            <p> 7h Redes locales.</p>
+            <p> 3h Seguridad informática.</p>
+            <p> 7h Montaje y mantenimiento de equipos.</p>
+            <p> 1h Inglés técnico. </p>
+        </div>
+        <div id="tabs-2">
+            <p> 5h Sistemas informáticos. </p>
+            <p> 6h Bases de datos. </p>
+            <p> 8h Programación. </p>
+            <p> 4h Lenguajes de marcas y sistemas de gestión de información. </p>
+            <p> 3h Entornos de desarrollo. </p>
+            <p>1h Inglés Técnico </p>
+            <p> 3h Formación y Orientación Laboral. </p>
+        </div>
+        <div id="tabs-3">
+            <p> 7h Desarrollo de interfaces. </p>
+            <p> 5h Programación multimedia y dispositivos móviles. </p>
+            <p> 4h Programación de servicios y procesos. </p>
+            <p> 5h Sistemas de gestión empresarial. </p>
+            <p> 3h Empresa e Iniciativa Emprendedora. </p>
+            <p> 5h Proyecto de Desarrollo de Aplicaciones Multiplataforma. (Febrero a Junio, 50h) </p>
+        </div>
+        <div id="tabs-4">
+            <p> 8h Implantación de sistemas operativos. </p>
+            <p> 6h Planificación y administración de redes. </p>
+            <p> 3h Fundamentos de hardware. </p>
+            <p> 6h Gestión de bases de datos. </p>
+            <p> 4h Lenguajes de marcas y sistemas de gestión de información. </p>
+            <p> 3h Formación y Orientación Laboral. </p>
+        </div>
+</body>
+
+</html>
