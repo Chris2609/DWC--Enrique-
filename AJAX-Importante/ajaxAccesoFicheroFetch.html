@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h2 id="txtPrimero">Real Sociedad Athletic de Bilbao</h2>
+    <button type="button" onclick="CargarArchivoTexto()">Leer Archivo</button>
+
+    <script>
+    //   function CargarArchivoTexto() {
+    //     fetch("http://185.60.40.210/ajax_info.txt")
+    //       .then((response) => {
+    //         if (!response.ok) {
+    //           throw new Error(
+    //             "La solicitud no se pudo completar correctamente."
+    //           );
+    //         }
+    //         return response.text();
+    //       })
+    //       .then((data) => {
+    //         document.getElementById("txtPrimero").textContent = data;
+    //       })
+    //       .catch((error) => {
+    //         console.error("Error al cargar el archivo:", error);
+    //       });
+    //   }
+
+      setInterval(() => {
+        fetch("http://185.60.40.210/dwc/Christian/ajax_info.txt")
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error(
+                "La solicitud no se pudo completar correctamente."
+              );
+            }
+            return response.text();
+          })
+          .then((data) => {
+            document.getElementById("txtPrimero").textContent = data;
+          })
+          .catch((error) => {
+            console.error("Error al cargar el archivo:", error);
+          });
+      }, 5000);
+    </script>
+  </body>
+</html>

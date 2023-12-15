@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function Estado(estado) {
+        var divResultado = document.getElementById("lista");
+        fetch(
+          "http://185.60.40.210/dwc/Christian/LeeXMLQuimica2.php?estado=" +
+            estado
+        )
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error(
+                "La solicitud no se pudo completar correctamente."
+              );
+            }
+            return response.text();
+          })
+          .then((data) => {
+            console.log("hola");
+            divResultado.innerHTML = data;
+          });
+      }
+    </script>
+
+    <select onchange="Estado(this.value)">
+      <option value="none">Elige</option>
+
+      <option value="gaseoso">Gaseoso</option>
+
+      <option value="solido">Sólido</option>
+
+      <option value="liquido">Líquido</option>
+    </select>
+
+    <div id="lista"></div>
+  </body>
+</html>
