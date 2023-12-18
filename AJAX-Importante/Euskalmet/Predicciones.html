@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="0"></div>
+    <div id="1"></div>
+
+    <script>
+      const options = {
+        method: "GET",
+        headers: {
+          Authorization:
+            "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJtZXQwMS5hcGlrZXkiLCJpc3MiOiJJRVMgUExBSUFVTkRJIEJISSBJUlVOIiwiZXhwIjoyMjM4MTMxMDAyLCJ2ZXJzaW9uIjoiMS4wLjAiLCJpYXQiOjE2Mzk3NDc5MDcsImVtYWlsIjoiaWtiZGJAcGxhaWF1bmRpLm5ldCJ9.Lf9-2osDOWeJhSyguL5nUx94KYVKM1fZOcU9PGsJPG4iyTMq_gTELdGqxssd8UhhgcQ-hsTXxaWUc8FK2cn4_TuvA_I6FXu6VH5utjMmdhQDgOCPCud-uMWYs-6EGCM97zwZJwlqXu-HNilTNUvOUGWuXoL2R3eOIfOI4g5V2n5Wkk1EfXbUunvBaiqIhJPKTC6IK5XiUEO6TKTtPsEgx3V1BX84JGAEa98qTfgUWDWzrnSMd7l-VCcLTScaJqmZI4RtiwHn2D5Og8gnaztpoRHFFLVFuFDwPdz1K9n8FdsdSQoxBugW6NeP-wjgev7PjLYM18Enq6JegRdw6MYjhA",
+        },
+      };
+
+      var fechaActual = new Date().toLocaleDateString("en-ZA");
+      var fechaFuturo = parseInt(fechaActual.replaceAll("/", "")) + 1;
+ 
+      for (let i = 0; i < 2; i++) {
+        fetch(
+          "https://api.euskadi.eus/euskalmet/weather/regions/basque_country/zones/coast_zone/locations/irun/forecast/at/" +
+            fechaActual +
+            "/for/" +
+            parseInt(fechaFuturo + i),
+          options
+        )
+          .then((response) => response.json())
+          .then((data) => {
+            // Acceder a propiedades específicas del objeto JSON
+            // const temperature = data.temperature.value;
+            // const temperatureUnit = data.temperature.unit;
+            // const temperatureRangeMin = data.temperatureRange.min;
+            // const temperatureRangeMax = data.temperatureRange.max;
+            // const temperatureRangeUnit = data.temperatureRange.unit;
+            // const forecastTextSpanish = data.forecastText.SPANISH;
+            // const forecastTextBasque = data.forecastText.BASQUE;
+
+            const contenedor = document.getElementById(i);
+            if(i == 0){
+              contenedor.innerHTML += "<h1>Mañana</h1>";
+            }else{
+              contenedor.innerHTML += "<h1>Pasado mañana</h1>";
+            }
+            contenedor.innerHTML += data.forecastText.SPANISH;
+            contenedor.innerHTML += "<br><br>"+data.forecastText.BASQUE+"<br><br>";
+            
+
+          })
+          .catch((err) => console.error(err));
+      }
+    </script>
+  </body>
+</html>
