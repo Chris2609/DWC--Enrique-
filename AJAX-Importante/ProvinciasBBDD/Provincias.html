@@ -1,0 +1,52 @@
+<!doctype html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8">
+
+<title>QuimicaClienteJSON</title>
+
+</head>
+
+<script>
+
+function buscar(comunidad){
+    var Resultado = document.getElementById('lista_provincias');
+            fetch("http://185.60.40.210/dwc/Christian/PruebaProvincias/PruebaProvincias.php?comunidad=" + comunidad)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error("La solicitud no se pudo completar correctamente.");
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    data.forEach(provincia => {
+                        // var provinciaElement = document.createElement('p');
+                        // provinciaElement.textContent = provincia.Provincia;
+                        // Resultado.appendChild(provinciaElement);
+
+                        lista_provincias.innerHTML += `<p>${provincia.Provincia}</p>`
+                    });
+                })
+                .catch(error => {
+                    console.error("Error :", error);
+                });
+}
+
+</script>
+
+<body>
+
+<p>&nbsp; </p>
+
+<label for="input_comunidad">Escribe la comunidad:</label>
+<input type="text" name="comunidad" id="input_comunidad" placeholder="Comunidad">
+<button onclick="buscar(input_comunidad.value)">Buscar</button>
+
+<div style ="font-size:24px" id="lista_provincias"></div>
+
+</body>
+
+</html>
