@@ -20,7 +20,7 @@ if ($link->connect_errno) {
 
 // Consulta
 
-$sql = "SELECT * from Provincias WHERE Comunidad = '" . $Comunidad . "'";
+$sql = "SELECT * from medallero WHERE (Oro + Plata + Bronce) > 0";
  
 
 $resultado = $link->query($sql); 
@@ -35,7 +35,7 @@ for ($i=0;$i<$filas;$i++){
 
     $fila = mysqli_fetch_array($resultado);
 
-    $miArray[$i]= array("Provincia"=>utf8_encode($fila["Provincia"]),"Extension"=>$fila["Extension"]);
+    $miArray[$i]= array("Pais"=>$fila["Pais"],"Oro"=>$fila["Oro"], "Plata"=>$fila["Plata"], "Bronce"=>$fila["Bronce"]);
 
 }
 

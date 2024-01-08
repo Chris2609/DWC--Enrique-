@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+
+    <h1>Olimpiadas de Londres</h1>
+    <div id="contenedor"></div>
+
+    <script>
+      const medallaOro = `<img src="Medallas/Oro.gif" alt="Oro">`;
+      const medallaPlata = `<img src="Medallas/Plata.gif" alt="Plata">`;
+      const medallaBronce = `<img src="Medallas/Bronce.gif" alt="Bronce">`;
+
+      function paises() {
+        fetch(
+          "http://185.60.40.210/dwc/Christian/ActividadMedallero/MedalleroBBDD.php"
+        )
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error(
+                "La solicitud no se pudo completar correctamente."
+              );
+            }
+            return response.json();
+          })
+          .then((data) => {
+            var html = "";
+
+            html += `<table border=1>`;
+            html += `<th>País</th>`;
+            html += `<th>Medallas</th>`;
+
+            data.forEach((pais) => {
+              html += `<tr><td>${pais.Pais}</td>`;
+              html += `<td>${medallaOro.repeat(pais.Oro)}${medallaPlata.repeat(pais.Plata)}${medallaBronce.repeat(pais.Bronce)}</td>`;
+              
+              html += `</tr>`;
+            });
+
+            html += `</table>`;
+            contenedor.innerHTML = html;
+          })
+          .catch((error) => {
+            console.error("Error :", error);
+          });
+      }
+
+      paises();
+
+      setInterval(() => {
+        paises();
+      }, 15000);
+    </script>
+  </body>
+</html>
