@@ -1,7 +1,5 @@
 <?php
 
-$Comunidad =$_REQUEST["comunidad"]; 
-
 $servername = "localhost";
 
 $username = "Christian";
@@ -20,7 +18,7 @@ if ($link->connect_errno) {
 
 // Consulta
 
-$sql = "SELECT * from medallero WHERE (Oro + Plata + Bronce) > 0";
+$sql = "SELECT * from elecciones ORDER BY votos DESC";
  
 
 $resultado = $link->query($sql); 
@@ -35,7 +33,7 @@ for ($i=0;$i<$filas;$i++){
 
     $fila = mysqli_fetch_array($resultado);
 
-    $miArray[$i]= array("Pais"=>$fila["Pais"],"Oro"=>$fila["Oro"], "Plata"=>$fila["Plata"], "Bronce"=>$fila["Bronce"]);
+    $miArray[$i]= array("Partido"=>$fila["Partido"],"Votos"=>$fila["Votos"]);
 
 }
 

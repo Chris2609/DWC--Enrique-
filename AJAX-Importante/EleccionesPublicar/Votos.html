@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="contenedor"></div>
+
+    <script>
+      function partidos() {
+        fetch("http://185.60.40.210/dwc/Christian/Votos.php")
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error(
+                "La solicitud no se pudo completar correctamente."
+              );
+            }
+            return response.json();
+          })
+          .then((data) => {
+            var html = "";
+
+            html += `<table border=1>`;
+            html += `<th>Partido</th>`;
+            html += `<th>Votos</th>`;
+            html += `<th>Concejales</th>`;
+
+            concejales = [20, 10, 5];
+            numConcejales = 0;
+            alcalde = data[0]["Partido"];
+
+            data.forEach((partido) => {
+              html += `<tr><td>${partido["Partido"]}</td>`;
+              html += `<td>${partido["Votos"]}</td>`;
+              html += `<td>${concejales[numConcejales] || ""}</td>`;
+              html += `</tr>`;
+
+              numConcejales++;
+            });
+
+            html += `</table>`;
+
+            html += `<h5>Alcalde</h5>`;
+            html += `<img src="Partidos/${alcalde}.jpg"></img>`;
+
+            contenedor.innerHTML = html;
+          })
+          .catch((error) => {
+            console.error("Error :", error);
+          });
+      }
+
+      partidos();
+
+      setInterval(() => {
+        console.log("actualizado")
+        partidos();
+      }, 5000);
+    </script>
+  </body>
+</html>

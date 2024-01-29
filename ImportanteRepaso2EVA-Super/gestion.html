@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gestion</title>
+  </head>
+  <body>
+    <div id="contenedor">
+      <table border="1">
+        <tr>
+          <td>PESCADERIA</td>
+          <td>
+            <button onclick="sumarNumero('Pescaderia')">Siguiente</button>
+          </td>
+        </tr>
+        <tr>
+          <td>CARNICERIA</td>
+          <td>
+            <button onclick="sumarNumero('Carniceria')">Siguiente</button>
+          </td>
+        </tr>
+        <tr>
+          <td>EMBUTIDOS</td>
+          <td><button onclick="sumarNumero('Embutidos')">Siguiente</button></td>
+        </tr>
+        <tr>
+          <td>PASTELERIA</td>
+          <td>
+            <button onclick="sumarNumero('Pasteleria')">Siguiente</button>
+          </td>
+        </tr>
+      </table>
+      <br />
+      <button onclick="cerrarTodo()">Cerrar todo</button>
+    </div>
+
+    <script>
+      function sumarNumero(seccion) {
+        console.log(seccion);
+        fetch(
+          "http://185.60.40.210/dwc/Christian/EjercicioSuper/gestion.php?seccion=" + seccion
+        )
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error(
+                "La solicitud no se pudo completar correctamente."
+              );
+            }
+            return response.json();
+          })
+          .then((data) => {
+            console.log(data[0].Numero);
+          })
+          .catch((error) => {
+            console.error("Error :", error);
+          });
+      }
+
+      function cerrarTodo() {
+        fetch(
+          "http://185.60.40.210/dwc/Christian/EjercicioSuper/gestion.php?cerrar=cerrar"
+        )
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error(
+                "La solicitud no se pudo completar correctamente."
+              );
+            }
+            return response.json();
+          })
+
+          .catch((error) => {
+            console.error("Error :", error);
+          });
+      }
+    </script>
+  </body>
+</html>

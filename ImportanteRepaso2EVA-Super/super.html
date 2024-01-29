@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Super</title>
+  </head>
+  <body>
+    <div id="contenedor"></div>
+    <script>
+      function obtenerColas() {
+        fetch("http://185.60.40.210/dwc/Christian/EjercicioSuper/super.php")
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error(
+                "La solicitud no se pudo completar correctamente."
+              );
+            }
+            return response.json();
+          })
+          .then((data) => {
+            var html = "";
+
+            html += `<table border=1>`;
+            html += `<th>Seccion</th>`;
+            html += `<th>Numero</th>`;
+
+            data.forEach((cola) => {
+              html += `<tr><td><img src="Imagenes/${cola.Seccion}.jpg" alt=""></td>`;
+              if (cola.Numero > 0) {
+                html += `<td style="text-align:center;">${cola.Numero}</td>`;
+              } else {
+                html += `<td style="text-align:center;">CERRADO</td>`;
+              }
+
+              html += `</tr>`;
+            });
+
+            html += `</table>`;
+            contenedor.innerHTML = html;
+          })
+          .catch((error) => {
+            console.error("Error :", error);
+          });
+      }
+
+      obtenerColas();
+
+      setInterval(() => {
+        obtenerColas();
+      }, 10000);
+    </script>
+  </body>
+</html>

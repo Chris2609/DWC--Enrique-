@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <!-- Tambien se puede con: <form action="http://185.60.40.210/dwc/Christian/GrabaVotos.php" method="get"></form> -->
+        <p>Simulación de votos</p>
+        <label for="partidos">Elige un partido</label>
+        <select name="partidos" id="partidos">
+            <option value="PSOE">PSOE</option>
+            <option value="PP">PP</option>
+            <option value="BILDU">BILDU</option>
+            <option value="EAJ-PNV">EAJ-PNV</option>
+            <option value="IU">IU</option>
+        </select>
+        <p>Votos: <input type="number" id="votos"></p>
+
+        <button onclick="actualizar(partidos.value, votos.value)">Actualizar</button>
+        
+        <script>
+            function actualizar(partido, votos) {
+
+                window.location.href = "http://185.60.40.210/dwc/Christian/GrabaVotos.php?partido=" + partido + "&votos=" + votos;
+
+                // fetch(
+                // "http://185.60.40.210/dwc/Christian/GrabaVotos.php?partido=" + partido + "&votos=" + votos
+                // )
+                // .then((response) => {
+                //     if (!response.ok) {
+                //     throw new Error(
+                //         "La solicitud no se pudo completar correctamente."
+                //     );
+                //     }
+                //     return response.json();
+                // })
+                // .then((data) => {
+                //     console.log(data);
+                // })
+                // .catch((error) => {
+                //     console.error("Error :", error);
+                // });
+                
+            }
+        </script>
+    </div>
+</body>
+</html>

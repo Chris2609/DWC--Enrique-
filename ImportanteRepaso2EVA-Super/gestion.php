@@ -1,6 +1,6 @@
 <?php
 
-$Comunidad =$_REQUEST["comunidad"]; 
+$seccion =$_REQUEST["seccion"]; 
 
 $servername = "localhost";
 
@@ -18,14 +18,18 @@ if ($link->connect_errno) {
 
 }
 
+if ($_REQUEST["cerrar"] != null) {
+    $sqlCerrarTodo = "UPDATE supermercado SET Numero = 0";
+    $link->query($sqlCerrarTodo); 
+}
 // Consulta
 
-$sql = "SELECT * from medallero WHERE (Oro + Plata + Bronce) > 0";
- 
+$sql = "UPDATE supermercado SET Numero = Numero + 1 WHERE Seccion = '" . $seccion . "'";
+$sql2 = "SELECT Numero FROM supermercado WHERE Seccion = '" . $seccion . "'";
 
-$resultado = $link->query($sql); 
+$link->query($sql); 
 
- 
+$resultado = $link->query($sql2); 
 
 $filas=$resultado->num_rows;
 
@@ -35,15 +39,13 @@ for ($i=0;$i<$filas;$i++){
 
     $fila = mysqli_fetch_array($resultado);
 
-    $miArray[$i]= array("Pais"=>$fila["Pais"],"Oro"=>$fila["Oro"], "Plata"=>$fila["Plata"], "Bronce"=>$fila["Bronce"]);
+    $miArray[$i]= array("Numero"=>$fila["Numero"]);
 
 }
 
  
 
 echo  json_encode($miArray);
-
- 
 
 mysqli_close($link);
 
