@@ -21,10 +21,25 @@
 
         <button onclick="actualizar(partidos.value, votos.value)">Actualizar</button>
         
+        <!--Version con form
+        <form action="http://185.60.40.210/dwc/Christian/GrabaVotos.php" method="get">
+            <label for="partidos">Elige un partido</label>
+            <select name="partidos" id="partidos">
+                <option value="PSOE">PSOE</option>
+                <option value="PP">PP</option>
+                <option value="BILDU">BILDU</option>
+                <option value="EAJ-PNV">EAJ-PNV</option>
+                <option value="IU">IU</option>
+            </select>
+            <p>Votos: <input type="number" name="votos" id="votos"></p>
+
+            <button type="submit">Actualizar</button>
+        </form>
+        -->
         <script>
             function actualizar(partido, votos) {
 
-                window.location.href = "http://185.60.40.210/dwc/Christian/GrabaVotos.php?partido=" + partido + "&votos=" + votos;
+                window.location.href = "http://185.60.40.210/dwc/Christian/GrabaVotos.php?partidos=" + partido + "&votos=" + votos;
 
                 // fetch(
                 // "http://185.60.40.210/dwc/Christian/GrabaVotos.php?partido=" + partido + "&votos=" + votos

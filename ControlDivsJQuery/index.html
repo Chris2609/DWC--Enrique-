@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .acordeon {
+            cursor: pointer;
+            padding: 1px;
+            margin-block: 1px;
+            background-color: rgb(211, 211, 211);
+        }
+
+        .contenido {
+            padding: 0 18px;
+            display: none;
+            overflow: hidden;
+            background-color: #f1f1f1;
+        }
+    </style>
+</head>
+<body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="noticias.js"></script>
+
+    <div id="contenedor"></div>
+
+    <script>
+        //version con "next"
+        // html = "";
+        
+        // for (let i = 1; i < aNoticias.length; i++) {
+        //     console.log(aNoticias[i]);
+        //     html += `<div class="acordeon" id="noticia_${aNoticias[i][1]}"><h1>${aNoticias[i][1]}</h1></div>`;
+        //     html += `<div class="contenido">${aNoticias[i][2]}</div>`;
+        //     contenedor.innerHTML = html;
+        // }
+
+        // $(document).ready(function() {
+        //     $(".acordeon").click(function() {
+        //         $(this).next(".contenido").slideToggle("slow");
+        //     });
+        // });
+
+        //version con "find", estando el div "contenido" dentro del div "acordeon"
+        html = "";
+
+        for (let i = 1; i < aNoticias.length; i++) {
+            console.log(aNoticias[i]);
+            html += `<div class="acordeon" id="noticia_${aNoticias[i][1]}"><h1>${aNoticias[i][1]}</h1>`;
+            html += `<div class="contenido"><img src="${aNoticias[i][3]}">${aNoticias[i][2]}</div></div>`;
+            contenedor.innerHTML = html;
+        }
+
+        //Permite abrir varios a la vez
+        // $(document).ready(function() {
+        //     $(".acordeon").click(function() {
+        //         $(this).find(".contenido").slideToggle("slow");
+        //     });
+        // });
+
+        //permite abrir uno solo a la vez
+        $(document).ready(function() {
+            $(".acordeon").click(function() {
+                $(".acordeon").not(this).find(".contenido").slideUp("slow");
+                
+                $(this).find(".contenido").slideToggle("slow");
+            });
+        });
+    </script>
+</body>
+</html>
