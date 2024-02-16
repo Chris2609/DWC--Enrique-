@@ -1,0 +1,105 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Documento sin título</title>
+</head>
+
+<body>
+<p>AFORO CONCIERTO SUPERTRAMP</p>
+<div id="tabla"></div>
+<script>
+let sCadena = "";
+sCadena += '<table border="1" style="border-collapse: collapse; border: 1px solid #000;">';
+sCadena += '<tr><td>POS</td>';
+for (let c = 0; c < 10; c++) {
+    sCadena += '<td width="60" height="60" align="center" style="border: 1px solid #000;">' + c + '</td>';
+}   
+sCadena += '</tr>';
+
+for (let f = 0; f < 10; f++) {
+    sCadena += '<tr><td width="60" height="60" align="center" style="border: 1px solid #000;">' + f + '</td>';
+    for (let c = 0; c < 10; c++) {
+        sCadena += '<td width="60" height="60" style="border: 1px solid #000;" id="posicion' + f + c + '">&nbsp;</td>';
+    }
+    sCadena += '</tr>';
+}
+
+sCadena += '</table>'; // Cierra la tabla.
+
+// Asigna la cadena construida al div mediante innerHTML.
+document.getElementById('tabla').innerHTML = sCadena;
+
+ConsultaFetch();
+setInterval(ConsultaFetch,5000);
+	
+function ConsultaFetch() {
+    // 1ª función que se debe programar.
+
+    // fetch al archivo situacion.php que devuelve todo el contenido de la tabla entradas
+    fetch("http://185.60.40.210/dwc/Christian/Examen2EVA/situacion.php")
+        .then((response) => {
+            if (!response.ok) {
+                throw new Error("La solicitud no se pudo completar correctamente.");
+            }
+            return response.json();
+        })
+        .then((data) => {
+			console.log(data);
+            ActualizaTeatro(data);
+
+            })
+        
+
+        .catch((error) => {
+            console.error("Error :", error);
+        });
+}
+
+
+
+function ActualizaTeatro(Respuesta) {
+    // 2ª función que se debe programar.
+    // variables para contar la cantidad de posiciones libres y ocupadas
+    var libres = 0;
+    var ocupadas = 0;
+
+
+    // mostrar que se devuelve correctamente la variable data mostrando la variable Respuesta, si no se pone JSON.stringify se muestra como varios "Object", al hacerlo de esta forma aparece como string
+    // console.log("Esto es ActualizarTeatro: " + JSON.stringify(Respuesta));
+    
+    // Recorrer la respuesta actualizando por cada fila cada una de sus columnas
+    Respuesta.forEach((fila) => {
+        var idFila = fila["idFila"];
+        var ocupacion = fila["Ocupacion"];
+        for (let i = 0; i < ocupacion.length; i++) {
+
+            // Obtener la posicion de la casilla actual
+            var posicion = document.getElementById(`posicion${idFila}${i}`);
+
+            // en base al valor de la casilla en el array de esa fila cambiarle el color
+            if (posicion) {
+                if (ocupacion[i] == "0") {
+                    posicion.style.backgroundColor = "green";
+                    libres++;
+                } else if (ocupacion[i] == "1") {
+                    posicion.style.backgroundColor = "red";
+                    ocupadas++;
+                }
+            }
+        }
+    });
+
+    //Sobreescribir el contenido del div "Situacion" con los valores de las variables "ocupadas", "libres" y el porcentaje de sitios libres en base al maximo (libres + ocupadas)
+    document.getElementById("Situacion").innerHTML = `<h1>Plazas ocupadas: ${ocupadas}</h1><h1>Plazas libres: ${libres}</h1><h1>Porcentaje: ${libres * 100 / (libres + ocupadas)}%</h1>`
+}
+
+</script>
+<div id="Situacion">
+    <h1>Plazas ocupadas: </h1>
+    <h1>Plazas Libres: </h1>
+    <h1>Porcentaje:</h1>
+</div>
+
+</body>
+</html>
